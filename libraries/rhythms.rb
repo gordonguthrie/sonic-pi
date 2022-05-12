@@ -9,3 +9,5 @@ def make_rhythms(accents, total_beats, beat_rotations=0)
 
   res.ring
 end
+
+print("make_rhythms defined")
