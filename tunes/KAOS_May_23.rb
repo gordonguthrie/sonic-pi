@@ -1,4 +1,4 @@
-dfduse_debug false
+use_debug false
 
 current_bpm = 120
 use_bpm current_bpm
@@ -28,45 +28,41 @@ end
 
 Keys = (ring, {root: :C, scale: :major})
 
-rkick0 = rsnare0 = rcymbal0 = dub0 = hard0 = rsnareacc0 = rcymbalacc0 = ring(false)
+rkick0 = rsnare0 = rcymbal0 = dub0 = hard0 = rsnareacc0 = ring(false)
 
 rkick1      = tabb(["1000","0010","1000","0010"])
 rsnare1     = tabb(["0000","1000","0000","1000"])
-rsnare1     = tabb(["0000","1000","0000","1000"])
+rsnare2     = tabb(["0000","1000","0000","1000"])
 rsnareacc1  = tabb(["1000","1000","1000","1000"])
 rcymbal1    = tabn(["1210","1123"])
+rcymbal2    = tabn(["1310","1134"])
+rcymbal3    = tabn(["3230","3321"])
+rcymbalx    = tabn(["01234567"])
 
 dub1  = tabb(["0010","0010"])
 dub2  = tabb(["0011","1000"])
 hard1 = tabb(["0000","0100"])
 hard2 = tabb(["0001","1100"])
 
-Kicks   = Kicks1
+Kicks   = Kicks2
 Snares  = Snares1
-Cymbals = Cymbals2
+Cymbals = Cymbals1
+Shakers = Shakers2
 
-rkick      = rkick0
-rcymbal    = rcymbal1
-rsnareacc  = rcymbalacc0
-rsnare     = rsnare0
+rkick      = rkick1
+rcymbal    = rcymbal3
+rsnare     = rsnare1
 rsnareacc  = rsnareacc0
 
-print("rcymbal is", rcymbal)
-print("rsnareacc1 is", rsnareacc1)
-
-has_shaker  = true
+has_shaker = false
 
 mbase0 = ring(0)
-mbase1 = make_riff(9, rkick1.drop(8))
+mbase1 = make_riff(9, rkick1.drop(8), 0.2)
 
 ##| mbase      = mbase0
 
 mbase      = mbase1[:beats]
 mdurations = mbase1[:durations]
-
-print("mbase1 is", mbase1)
-print("mbase is", hexring_to_string(mbase))
-print("mdurations is", mdurations)
 
 dub  = dub1
 hard = hard0
@@ -75,7 +71,7 @@ ghost  = -> { rrand(0.2, 0.3) }
 normal = -> { rrand(0.4, 0.6) }
 accent = -> { rrand(0.8, 0.9) }
 
-define :walking_sleep do | old_walk, beat |
+define :walking_sleep do | old_walk, beat, source |
   walk = rdist(0.01, 0)
   slp = get_sleep(beat)
   sleep slp + walk - old_walk
@@ -97,7 +93,7 @@ define :play_kicks do | kicks, bar, globalrandom1, globalrandom2 |
     play amp: a, pan: 0.5, sinfreq: sinfreq, glissf: glissf, att: att
   end
   if has_shaker then
-    sample samplespath + Shakers.choose, amp: 2.0
+    sample samplespath + Shakers.choose, amp: 0.7
   end
 end
 
@@ -114,18 +110,30 @@ define :play_snare do | snares, bar, globalrandom1, globalrandom2 |
   end
 end
 
-with_fx :reverb, mix: 0.3 do
-  with_fx :echo, mix: 0.25 do
+define :in_dub do | bar, reverbfx, echofx |
+  if dub[bar] then
+    control reverbfx, mix: 0.4, room: 1.0
+    control echofx, mix: 0.3, decay: 10
+  else
+    control reverbfx, mix: 0.3, room: 0.6
+    control echofx, mix: 0.2, decay: 0.2
+  end
+end
+
+with_fx :reverb, mix: 0.3 do | r |
+  with_fx :echo, mix: 0.25 do | e |
     with_fx :compressor do
       old_walk = 0
+      
       live_loop :beat1, sync: :metronome do
-        
         bar  = bars.look(:bars) - 1
         beat = beats.look(:beats) - 1
         key  = Keys[bar]
         globalrandom1 = randoms.tick
         globalrandom2 = randoms.tick
-        ##| print("beat is", beat, "and bar is", bar, "key is", key)
+        
+        in_dub(bar, r, e)
+        
         if rkick[beat] then
           play_kicks(Kicks, bar, globalrandom1, globalrandom2)
         end
@@ -134,7 +142,7 @@ with_fx :reverb, mix: 0.3 do
           play_snare(Snares, bar, globalrandom1, globalrandom2)
         end
         
-        old_walk = walking_sleep(old_walk, beat)
+        old_walk = walking_sleep(old_walk, beat, "beat1")
         
         if beat == 15 then
           bars.tick(:bars)
@@ -146,24 +154,26 @@ with_fx :reverb, mix: 0.3 do
   end
 end
 
-with_fx :reverb, mix: 0.3 do
-  with_fx :echo, mix: 0.25 do
+
+with_fx :reverb, mix: 0.3 do | r |
+  with_fx :echo, mix: 0.25 do | e |
     with_fx :compressor do
       old_walk = 0
-      live_loop :beat3, sync: :metronome do
-        
+      
+      live_loop :beat2, sync: :metronome do
         bar  = bars.look(:bars) - 1
         beat = beats.look(:beats) - 1
         key  = Keys[bar]
         globalrandom1 = randoms.tick
         globalrandom2 = randoms.tick
-        ##| print("beat is", beat, "and bar is", bar, "key is", key)
+        
+        in_dub(bar, r, e)
         
         if rsnare[beat] then
           play_snare(Snares, bar, globalrandom1, globalrandom2)
         end
         
-        old_walk = walking_sleep(old_walk, beat)
+        old_walk = walking_sleep(old_walk, beat, "beat2")
         
         if beat == 15 then
           bars.tick(:bars)
@@ -174,11 +184,11 @@ with_fx :reverb, mix: 0.3 do
   end
 end
 
-with_fx :reverb, mix: 0.3 do
-  with_fx :echo, mix: 0.2 do
+with_fx :reverb, mix: 0.3 do | r |
+  with_fx :echo, mix: 0.25 do | e |
     with_fx :compressor do
       old_walk = 0
-      live_loop :beat2, sync: :metronome do
+      live_loop :beat3, sync: :metronome do
         
         bar  = bars.look(:bars) - 1
         beat = beats.look(:beats) - 1
@@ -186,12 +196,14 @@ with_fx :reverb, mix: 0.3 do
         globalrandom1 = randoms.tick
         globalrandom2 = randoms.tick
         
+        in_dub(bar, r, e)
+        
         if rkick[beat] then
           play_kicks(Kicks, bar, globalrandom1, globalrandom2)
         end
         
         if (rcymbal[beat] != 0) then
-          cymbal = rcymbal[beat]
+          cymbal = rcymbal[beat] - 1
           cring = Cymbals[:cymbals].ring
           a = normal.call * Cymbals[:amp]
           s = samplespath + cring[cymbal]
@@ -209,7 +221,7 @@ with_fx :reverb, mix: 0.3 do
           sample s, amp: a * 0.5, pan: -0.45
         end
         
-        old_walk = walking_sleep(old_walk, beat)
+        old_walk = walking_sleep(old_walk, beat, "beat3")
         
         if beat == 15 then
           bars.tick(:bars)
@@ -233,7 +245,7 @@ with_fx :level, amp: 0.5 do
     d = mdurations.look(:mdurations)
     pan1 = rdist(0.1,  0.2)
     pan2 = rdist(0.1, -0.2)
-    n = Chord1[m] - 24
+    n = Chord1[m] - 36
     if m != 0 then
       dur1 = (d + rdist(0.05, 0)).abs
       dur2 = (d + rdist(0.05, 0)).abs
@@ -242,15 +254,9 @@ with_fx :level, amp: 0.5 do
       else
         isroot = false
       end
-      with_fx :lpf, cutoff: 80 do
-        play_bass(n, pan1, dur1, isroot, false)
-      end
-      play_lead(Chord2, pan2, dur2, false)
+      play_bass(n, pan1, dur1, isroot, false)
     end
-    slp = get_sleep(beat)
-    walk = rdist(0.01, 0)
-    sleep slp + walk - old_walk
-    oldwalk = walk
+    old_walk = walking_sleep(old_walk, beat, "bass")
     if beat == 15 then
       bars.tick(:bars)
     end

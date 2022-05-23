@@ -40,25 +40,22 @@ define(:play_bass) do |note, pan, no_beats, isroot, debug|
     print("base note is ", note, "no of beats is", no_beats)
   end
 
-  r = rand
-  release = no_beats * 0.3
+  release = no_beats
   a1 = rdist(0.2, 0.8)
   a2 = rdist(0.2, 0.8)
   a3 = rdist(0.2, 0.8)
   r1 = rdist(0.2, 0.8)
   r2 = rdist(0.2, 0.8)
   r3 = rdist(0.2, 0.8)
-  sustain = no_beats - release
-  synth(:dsaw,   note: note + 12.1,   amp: 0.2 * a1,   pan: pan,   release: no_beats * r1)
-  synth(:dsaw,   note: note + 12,   amp: 0.2 * a2,   pan: pan,   release: no_beats * r2)
+  sustain = no_beats
+  synth(:sine,   note: note + 12.1,   amp: 0.2 * a1,   pan: pan,   release: no_beats * r1)
+  synth(:sine,   note: note + 12,   amp: 0.2 * a2,   pan: pan,   release: no_beats * r2)
   synth(:sine,   note: note,   amp: 0.5 * a3,   pan: pan,   release: no_beats * r1)
   synth(:dtri,   note: note - 12,   amp: 0.2 * a1,   pan: pan,   release: no_beats * r2,   attack: 0.01)
   synth(:beep,   note: note - 11.9,   amp: 0.2 * a2,   pan: pan,   release: no_beats * r1)
 
   if isroot
-    synth(:pulse,     note: note,     amp: 0.8 * a3,     pan: pan,     release: release * r3,     sustain: sustain,     pulse_width: 0.2,     attack: 0.01)
-    synth(:pulse,     note: note - 12,     amp: 0.5 * a1,     pan: pan,     release: release * r3,     sustain: sustain,     pulse_width: 0.4,     attack: 0.01)
-    play(note,     amp: 1 * a2,     pan: pan,     release: release * r3,     sustain: sustain)
+    play(note,     amp: 1 * a2,     pan: pan,     release: release * r3)
   else
     play(note,     amp: 0.2 * a3,     pan: pan,     release: no_beats * r3)
   end

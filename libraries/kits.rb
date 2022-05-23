@@ -25,7 +25,7 @@ Kicks2 = {
     "Kicks_II/lowdrum.wav",
     "Kicks/ElecK02-Kick01.wav",
   ],
-  hards: ["Kicks_II/broken-head-drum.wav", "Japanese/big_taiko.wav", "Japanese/taiko_1.wav"],
+  hards: ["Japanese/big_taiko.wav", "Japanese/taiko_1.wav"],
   dubs: ["Kicks_II/bjorn1.wav", "Japanese/okedo-A4.wav", "Kicks/Kick - Slow & Low.wav"],
 }
 Snares1 = {
@@ -43,7 +43,6 @@ Snares1 = {
   ],
   dubs: [
     "Snares_II/chunky-big-snare2.wav",
-    "Snares_II/dirty_exploded_snare.wav",
     "Snares_II/double-reverb-stick.wav",
     "Snares_II/popslap.wav",
   ],
@@ -59,22 +58,19 @@ Cymbals1 = {
   ],
 }
 Cymbals2 = {
-  amp: 1.0,
-  cymbals: [
-    "African/gungru1.wav",
-    "African/gungru2.wav",
-    "African/gungru3.wav",
-    "African/gungru5.wav",
-  ],
-}
-Cymbals3 = {
-  amp: 2.0,
+  amp: 5.0,
   cymbals: [
     "Wierdos/typewriter-bell.wav",
     "Wierdos/Knife-01.wav",
-    "Wierdos/Knife-03.wav",
     "Wierdos/Frog1-simple.wav",
-    "Wierdos/spank.wav",
+    "Wierdos/bottletop.wav",
   ],
 }
-Shakers = ["African/gungru2.wav", "African/gungru3.wav", "African/gungru5.wav"]
+Shakers1 = ["African/gungru2.wav", "African/gungru3.wav", "African/gungru5.wav"]
+Shakers2 = [
+  "Wierdos/bottletop.wav",
+  "Wierdos/bendy-metal-hit.wav",
+  "Wierdos/space-percussion.wav",
+  "Wierdos/fun_frog.wav",
+]
+Shakers3 = ["Wierdos/vibra-crunchy-1.wav", "Wierdos/vibra-crunchy-1.wav", "Wierdos/zippy-wave.wav"]
