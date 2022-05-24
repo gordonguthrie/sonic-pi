@@ -67,10 +67,16 @@ Cymbals2 = {
   ],
 }
 Shakers1 = ["African/gungru2.wav", "African/gungru3.wav", "African/gungru5.wav"]
-Shakers2 = [
-  "Wierdos/bottletop.wav",
-  "Wierdos/bendy-metal-hit.wav",
-  "Wierdos/space-percussion.wav",
-  "Wierdos/fun_frog.wav",
+Shakers2 = ["Wierdos/vibra-crunchy-1.wav", "Wierdos/vibra-crunchy-1.wav", "Wierdos/zippy-wave.wav"]
+Shakers3 = ["Punches/mellow-stab.wav"]
+Shakers4 = [
+  "Punches/stab-satisfying-1.wav",
+  "Punches/stab-satisfying-2.wav",
+  "Punches/stab-satisfying-3.wav",
 ]
-Shakers3 = ["Wierdos/vibra-crunchy-1.wav", "Wierdos/vibra-crunchy-1.wav", "Wierdos/zippy-wave.wav"]
+Shakers5 = ["Punches/stabs-hits-071.wav", "Punches/stabs-hits-109.wav"]
+Shakers6 = ["Punches/stabs-hits-170.wav"]
+DubShakers1 = ["Wierdos/bottletop.wav", "Wierdos/bendy-metal-hit.wav", "Wierdos/space-percussion.wav"]
+
+#  "Wierdos/fun_frog.wav",
+DubShakers2 = ["Punches/stabs-hits-004.wav", "Punches/stabs-hits-005.wav"]
