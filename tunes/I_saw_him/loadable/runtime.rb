@@ -1,13 +1,18 @@
-samplespath = "/Users/gordonguthrie/Dev/sonic-pi/samples/"
-ghost = -> { rrand(0.2, 0.3) }
-normal = -> { rrand(0.4, 0.6) }
-accent = -> { rrand(0.8, 0.9) }
-
 define(:walking_sleep) do |old_walk, beat, source|
   walk = rdist(0.01, 0)
   slp = get_sleep(beat)
   sleep(slp + walk - old_walk)
   return walk
+end
+
+define(:get_sleep) do |beat|
+  if (beat % 2) == 0
+    slp = 0.5 + $swing_time
+  else
+    slp = 0.5 - $swing_time
+  end
+
+  return slp
 end
 
 define(:play_kicks) do |kicks, bar, dub, hard, has_shaker, globalrandom1, globalrandom2|
@@ -16,10 +21,10 @@ define(:play_kicks) do |kicks, bar, dub, hard, has_shaker, globalrandom1, global
   sinfreq = rdist(10, 70)
   glissf = rdist(0, 0.9)
   att = rdist(0, 0.01)
-  a = ((rand < 0.8) ? normal.call : ghost.call)
+  a = ((rand < 0.8) ? $normal.call : $ghost.call)
 
   if globalrandom2 > 0.9
-    s = samplespath + drum
+    s = $samplespath + drum
     sample(s,     amp: a,     pan: 0.5)
   else
     use_synth(:sc_kick)
@@ -28,11 +33,11 @@ define(:play_kicks) do |kicks, bar, dub, hard, has_shaker, globalrandom1, global
 
   if has_shaker
     if dub[bar]
-      shak = DubShakers.choose
-      sample(samplespath + shak,       amp: 0.7)
+      shak = $DubShakers.choose
+      sample($samplespath + shak,       amp: 0.7)
     else
-      shak = Shakers.choose
-      sample(samplespath + shak,       amp: 0.7)
+      shak = $Shakers.choose
+      sample($samplespath + shak,       amp: 0.7)
     end
   end
 end
@@ -40,10 +45,10 @@ end
 define(:play_snare) do |snares, bar, dub, hard, globalrandom1, globalrandom2|
   splash = get_drum(snares, dub[bar], hard[bar])
   drum = ((globalrandom1 > 0.5) ? splash : snares[:main])
-  a = ((rand > 0.6) ? ghost.call : normal.call)
+  a = ((rand > 0.6) ? $ghost.call : $normal.call)
 
   if globalrandom2 > 0.9 || dub[bar] || hard[bar]
-    s = samplespath + drum
+    s = $samplespath + drum
     sample(s,     amp: a,     pan: 0.5)
   else
     use_synth(:sc_snare)

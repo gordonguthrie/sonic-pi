@@ -75,13 +75,3 @@ define(:play_lead) do |note, pan, no_beats, debug|
   synth(:piano,   note: note,   amp: 0.7 * a,   pan: pan,   release: no_beats)
   synth(:piano,   note: note - 12,   amp: 0.2 * a,   pan: pan,   release: no_beats)
 end
-
-define(:get_sleep) do |beat|
-  if (beat % 2) == 0
-    slp = 0.5 + swing_time
-  else
-    slp = 0.5 - swing_time
-  end
-
-  return slp
-end

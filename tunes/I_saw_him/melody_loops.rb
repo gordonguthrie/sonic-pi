@@ -1,13 +1,15 @@
+use_bpm $bpm
+
 with_fx(:level, amp: 0.5) do
   old_walk = 0
 
   live_loop(:bass,   sync: :metronome) do
-    bar = bars.look(:bars) - 1
-    beat = beats.look(:beats) - 1
-    key = Keys[bar]
+    bar = $bars.look(:bars) - 1
+    beat = $beats.look(:beats) - 1
+    key = $keys[bar]
     Chord1 = (chord(key[:root], "13"))
-    m = mbass.look(:mbass)
-    d = mdurations.look(:mdurations)
+    m = $mbass.look(:mbass)
+    d = $mdurations.look(:mdurations)
     pan = rdist(0.1, 0.2)
     n = Chord1[m] - 36
 
@@ -26,12 +28,12 @@ with_fx(:level, amp: 0.5) do
     old_walk = walking_sleep(old_walk, beat, "bass")
 
     if beat == 15
-      bars.tick(:bars)
+      $bars.tick(:bars)
     end
 
-    beats.tick(:beats)
-    mbase.tick(:mbass)
-    mdurations.tick(:mdurations)
+    $beats.tick(:beats)
+    $mbass.tick(:mbass)
+    $mdurations.tick(:mdurations)
   end
 end
 
