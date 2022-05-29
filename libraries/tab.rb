@@ -45,27 +45,6 @@ define(:tabn) do |array|
   return result.ring
 end
 
-define(:tabn) do |array|
-  len1 = array.length
-  idx1 = 0
-  result = []
-
-  len1.times do
-    string = array[idx1]
-    len2 = string.length
-    idx2 = 0
-
-    len2.times do
-      result.append(string[idx2].to_i)
-      idx2 = idx2 + 1
-    end
-
-    idx1 = idx1 + 1
-  end
-
-  return result.ring
-end
-
 define(:tabh) do |array|
   len1 = array.length
   idx1 = 0
@@ -111,7 +90,8 @@ define(:tabs) do |array|
   idx1 = 0
   result = []
 
-  len.times do
+  len1.times do
+    string = array[idx1]
     len2 = string.length
     idx2 = 0
 
@@ -141,6 +121,68 @@ define(:tabs) do |array|
   end
 
   return result.ring
+end
+
+define(:tab2) do |array, root|
+  len1 = array.length
+  idx1 = 0
+  result = []
+
+  print("root", root)
+  print("octave is", note_info(root).octave)
+  octave = note_info(root).octave
+  len1.times do
+    string = array[idx1]
+    len2 = string.length
+    idx2 = 0
+
+    len2.times do
+      if string[idx2] == "a"
+        result.append(make_sym(:a, octave))
+      elsif string[idx2] == "b"
+        result.append(make_sym(:b, octave))
+      elsif string[idx2] == "c"
+        result.append(make_sym(:c, octave))
+      elsif string[idx2] == "d"
+        result.append(make_sym(:d, octave))
+      elsif string[idx2] == "e"
+        result.append(make_sym(:e, octave))
+      elsif string[idx2] == "f"
+        result.append(make_sym(:f, octave))
+      elsif string[idx2] == "g"
+        result.append(make_sym(:g, octave))
+      elsif string[idx2] == "A"
+        result.append(make_sym(:a, octave + 1))
+      elsif string[idx2] == "B"
+        result.append(make_sym(:b, octave + 1))
+      elsif string[idx2] == "C"
+        result.append(make_sym(:c, octave + 1))
+      elsif string[idx2] == "D"
+        result.append(make_sym(:d, octave + 1))
+      elsif string[idx2] == "E"
+        result.append(make_sym(:e, octave + 1))
+      elsif string[idx2] == "F"
+        result.append(make_sym(:f, octave + 1))
+      elsif string[idx2] == "G"
+        result.append(make_sym(:g, octave + 1))
+      else
+        result.append(:r)
+      end
+
+      idx2 = idx2 + 1
+    end
+
+    idx1 = idx1 + 1
+  end
+
+  print("result", result)
+
+  return result.ring
+end
+
+define(:make_sym) do | midi, octave |
+  n = note_info(midi.to_i + (octave - 4) * 12).midi_string
+  return n.to_sym
 end
 
 define(:numring_to_string) do |ring|
