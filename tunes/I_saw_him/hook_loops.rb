@@ -1,3 +1,5 @@
+use_bpm $bpm
+
 with_fx(:reverb, mix: 0.3) do |r|
   with_fx(:echo,   mix: 0.25) do |e|
     old_walk = 0
