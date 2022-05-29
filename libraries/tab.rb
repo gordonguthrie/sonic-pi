@@ -128,9 +128,10 @@ define(:tab2) do |array, root|
   idx1 = 0
   result = []
 
-  print("root", root)
-  print("octave is", note_info(root).octave)
   octave = note_info(root).octave
+  key = note_info(root).pitch_class
+  key_offset = key - :c
+
   len1.times do
     string = array[idx1]
     len2 = string.length
@@ -138,33 +139,33 @@ define(:tab2) do |array, root|
 
     len2.times do
       if string[idx2] == "a"
-        result.append(make_sym(:a, octave))
+        result.append(make_sym(:a + key_offset, octave))
       elsif string[idx2] == "b"
-        result.append(make_sym(:b, octave))
+        result.append(make_sym(:b + key_offset, octave))
       elsif string[idx2] == "c"
-        result.append(make_sym(:c, octave))
+        result.append(make_sym(:c + key_offset, octave))
       elsif string[idx2] == "d"
-        result.append(make_sym(:d, octave))
+        result.append(make_sym(:d + key_offset, octave))
       elsif string[idx2] == "e"
-        result.append(make_sym(:e, octave))
+        result.append(make_sym(:e + key_offset, octave))
       elsif string[idx2] == "f"
-        result.append(make_sym(:f, octave))
+        result.append(make_sym(:f + key_offset, octave))
       elsif string[idx2] == "g"
-        result.append(make_sym(:g, octave))
+        result.append(make_sym(:g + key_offset, octave))
       elsif string[idx2] == "A"
-        result.append(make_sym(:a, octave + 1))
+        result.append(make_sym(:a + key_offset, octave + 1))
       elsif string[idx2] == "B"
-        result.append(make_sym(:b, octave + 1))
+        result.append(make_sym(:b + key_offset, octave + 1))
       elsif string[idx2] == "C"
-        result.append(make_sym(:c, octave + 1))
+        result.append(make_sym(:c + key_offset, octave + 1))
       elsif string[idx2] == "D"
-        result.append(make_sym(:d, octave + 1))
+        result.append(make_sym(:d + key_offset, octave + 1))
       elsif string[idx2] == "E"
-        result.append(make_sym(:e, octave + 1))
+        result.append(make_sym(:e + key_offset, octave + 1))
       elsif string[idx2] == "F"
-        result.append(make_sym(:f, octave + 1))
+        result.append(make_sym(:f + key_offset, octave + 1))
       elsif string[idx2] == "G"
-        result.append(make_sym(:g, octave + 1))
+        result.append(make_sym(:g + key_offset, octave + 1))
       else
         result.append(:r)
       end
@@ -174,8 +175,6 @@ define(:tab2) do |array, root|
 
     idx1 = idx1 + 1
   end
-
-  print("result", result)
 
   return result.ring
 end
