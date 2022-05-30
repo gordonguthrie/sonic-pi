@@ -13,9 +13,7 @@ with_fx(:reverb, mix: 0.3) do |r|
         if $hook[bar]
           if $hooks[beat] != 0
             drum = $Hook[$hooks[beat] - 1]
-            sample(samplespath + drum)
-          else
-            sleep(0.5)
+            sample($samplespath + drum)
           end
         end
 
