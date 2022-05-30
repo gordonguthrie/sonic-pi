@@ -1,0 +1,14 @@
+(SynthDef("picker", { arg out = 0, freq = 440, amp = 0.1, pan = 0;
+    var env, snd, zero, zero2, one, two, two2, two3, three, four;
+	env = Env.perc(level: amp, releaseTime: 1.0).kr(doneAction: 2);
+	zero  = Pulse.ar(freq/2.0,      SinOsc.kr(0.2).range(0.01, 0.99), 0.25);
+	zero2 = Pulse.ar(freq/2.0 + 10, SinOsc.kr(0.2).range(0.01, 0.99), 0.25);
+	one   = Pulse.ar(freq,          SinOsc.kr(0.2).range(0.01, 0.99), 0.75);
+	two   = Pulse.ar(freq * 2,      SinOsc.kr(0.2).range(0.01, 0.99), 0.25);
+	two2  = Pulse.ar(freq * 2 - 10, SinOsc.kr(0.2).range(0.01, 0.99), 0.25);
+	two3  = Pulse.ar(freq * 2 + 10, SinOsc.kr(0.2).range(0.01, 0.99), 0.25);
+	three = Pulse.ar(freq * 4,      SinOsc.kr(0.2).range(0.01, 0.99), 0.15);
+	four  = Pulse.ar(freq * 8,      SinOsc.kr(0.2).range(0.01, 0.99), 0.1);
+	snd = Mix.ar([zero, zero2, one, two, two2, two3, three, four]) * env;
+	Out.ar(out, Pan2.ar(snd, pan));
+}).writeDefFile("/Users/gordonguthrie/.synthdefs"))
