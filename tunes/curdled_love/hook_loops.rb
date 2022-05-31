@@ -1,3 +1,10 @@
+##|  _    _             _
+##| | |  | |           | |
+##| | |__| | ___   ___ | | __
+##| |  __  |/ _ \ / _ \| |/ /
+##| | |  | | (_) | (_) |   <
+##| |_|  |_|\___/ \___/|_|\_\
+
 use_bpm $bpm
 
 with_fx(:reverb, mix: 0.3) do |r|
@@ -17,7 +24,7 @@ with_fx(:reverb, mix: 0.3) do |r|
           end
         end
 
-        old_walk = walking_sleep(old_walk, beat, "beat3")
+        old_walk = walking_sleep(old_walk, beat, "hook")
 
         if beat == 15
           $bars.tick(:bars)

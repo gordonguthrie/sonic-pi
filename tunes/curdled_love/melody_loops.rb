@@ -1,3 +1,10 @@
+##|   _____ _
+##|  / ____| |
+##| | |    | |__   ___   ___  _ __
+##| | |    | '_ \ / _ \ / _ \| '_ \
+##| | |____| | | | (_) | (_) | | | |
+##|  \_____|_| |_|\___/ \___/|_| |_|
+
 use_bpm $bpm
 
 with_fx(:level, amp: 0.5) do
@@ -46,7 +53,7 @@ end
 
 with_fx(:reverb, mix: 0.3) do |r|
   with_fx(:echo,   mix: 0.2) do |e|
-    with_fx :level, amp: 0.1 do
+    with_fx :compressor do | c |
       old_walk = 0
 
       live_loop(:lead, sync: :metronome) do
@@ -54,22 +61,26 @@ with_fx(:reverb, mix: 0.3) do |r|
         g2 = $g2
         g3 = $g3
         g4 = $g4
+        gr = $gr
+        print("gr is", gr)
+        div = 8
+        control c, amp: 0.001
         8.times do
           bar  = $bars.look(:bars) - 1
           beat = $beats.look(:beats) - 1
           key  = $keys[bar]
-          use_synth :harpsichord1
-          if g1[beat]
-            play g1[beat], amp: 0.05
+          use_synth :picker
+          if g1[beat] != :r
+            play note: g1[beat].to_i, amp: 0.02, rel: gr[beat]/div + rdist(0.05, 0)
           end
-          if g2[beat]
-            play g2[beat], amp: 0.05
+          if g2[beat] != :r
+            play note: g2[beat].to_i, amp: 0.02, rel: gr[beat]/div + rdist(0.05, 0)
           end
-          if g3[beat]
-            play g3[beat], amp: 0.05
+          if g3[beat] != :r
+            play note: g3[beat].to_i, amp: 0.02, rel: gr[beat]/div + rdist(0.05, 0)
           end
-          if g4[beat]
-            play g4[beat], amp: 0.05
+          if g4[beat] != :r
+            play note: g4[beat].to_i, amp: 0.02, rel: gr[beat]/div + rdist(0.05, 0)
           end
 
           old_walk = walking_sleep(old_walk, beat, "lead")
