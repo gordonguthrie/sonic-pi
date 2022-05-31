@@ -12,14 +12,19 @@ with_fx(:reverb, mix: 0.3) do |r|
     old_walk = 0
 
     live_loop(:hook,     sync: :metronome) do
+      bars = $bars
+      beats = $beats
+      key = $key
+      Hook = $hk[:hook]
+      rhythm = $hk[:rhythm]
+      playhook = $playhook
       8.times do
-        bar = $bars.look(:bars) - 1
-        beat = $beats.look(:beats) - 1
-        key = $keys[bar]
+        bar  = bars.look(:bars) - 1
+        beat = beats.look(:beats) - 1
 
-        if $hook[bar]
-          if $hooks[beat] != 0
-            drum = $Hook[$hooks[beat] - 1]
+        if playhook[bar]
+          if rhythm[beat] != 0
+            drum = Hook[rhythm[beat] - 1]
             sample($samplespath + drum)
           end
         end
@@ -27,10 +32,10 @@ with_fx(:reverb, mix: 0.3) do |r|
         old_walk = walking_sleep(old_walk, beat, "hook")
 
         if beat == 15
-          $bars.tick(:bars)
+          bars.tick(:bars)
         end
 
-        $beats.tick(:beats)
+        beats.tick(:beats)
       end
     end
   end

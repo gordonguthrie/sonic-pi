@@ -13,13 +13,12 @@ with_fx(:level, amp: 0.5) do
   live_loop(:bass,   sync: :metronome) do
     bars       = $bars
     beats      = $beats
-    keys       = $keys
+    key        = $key
     mbass      = $mbass
     mdurations = $mdurations
     8.times do
       bar  = bars.look(:bars) - 1
       beat = beats.look(:beats) - 1
-      key  = keys[bar]
       Chord1 = (chord(key[:root], "13"))
       m = mbass.look(:mbass)
       d = mdurations.look(:mdurations)
@@ -62,13 +61,14 @@ with_fx(:reverb, mix: 0.3) do |r|
         g3 = $g3
         g4 = $g4
         gr = $gr
-        print("gr is", gr)
+        bars  = $bars
+        beats = $beats
+        key = $key
         div = 8
-        control c, amp: 0.001
+        control c, amp: 0.01
         8.times do
-          bar  = $bars.look(:bars) - 1
-          beat = $beats.look(:beats) - 1
-          key  = $keys[bar]
+          bar  = bars.look(:bars) - 1
+          beat = beats.look(:beats) - 1
           use_synth :picker
           if g1[beat] != :r
             play note: g1[beat].to_i, amp: 0.02, rel: gr[beat]/div + rdist(0.05, 0)

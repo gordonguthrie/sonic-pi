@@ -15,32 +15,31 @@ with_fx(:reverb, mix: 0.3) do |r|
       live_loop(:beat1,       sync: :metronome) do
         bars        = $bars
         beats       = $beats
-        keys        = $keys
+        key         = $key
         randoms     = $randoms
-        dub         = $dub
-        hard        = $hard
+        playdub     = $playdub
+        playhard    = $playhard
         has_shaker  = $has_shaker
         rkick       = $rkick
         Kicks       = $Kicks
         rsnare      = $rsnare
         Snares      = $Snares
-        hook        = $hook
+        playhook    = $playhook
         8.times do
           bar = bars.look(:bars) - 1
           beat = beats.look(:beats) - 1
-          key = keys[bar]
           globalrandom1 = randoms.tick
           globalrandom2 = randoms.tick
-          in_dub(bar, dub, r, e)
+          in_dub(bar, playdub, r, e)
 
-          if !hook[bar]
+          if !playhook[bar]
 
             if rkick[beat]
-              play_kicks(Kicks, bar, dub, hard, has_shaker, globalrandom1, globalrandom2)
+              play_kicks(Kicks, bar, playdub, playhard, has_shaker, globalrandom1, globalrandom2)
             end
 
             if rsnare[beat]
-              play_snare(Snares, bar, dub, hard, globalrandom1, globalrandom2)
+              play_snare(Snares, bar, playdub, playhard, globalrandom1, globalrandom2)
             end
           end
           old_walk = walking_sleep(old_walk, beat, "beat1")
@@ -64,24 +63,23 @@ with_fx(:reverb, mix: 0.3) do |r|
       live_loop(:beat2,       sync: :metronome) do
         bars        = $bars
         beats       = $beats
-        keys        = $keys
+        key         = $key
         randoms     = $randoms
-        dub         = $dub
-        hard        = $hard
+        playdub     = $playdub
+        playhard    = $playhard
         rsnare      = $rsnare
         Snares      = $Snares
-        hook        = $hook
+        playhook    = $playhook
         8.times do
           bar  = bars.look(:bars) - 1
           beat = beats.look(:beats) - 1
-          key  = keys[bar]
           globalrandom1 = randoms.tick
           globalrandom2 = randoms.tick
-          in_dub(bar, dub, r, e)
-          if !hook[bar]
+          in_dub(bar, playdub, r, e)
+          if !playhook[bar]
 
             if rsnare[beat]
-              play_snare(Snares, bar, dub, hard, globalrandom1, globalrandom2)
+              play_snare(Snares, bar, playdub, playhard, globalrandom1, globalrandom2)
             end
           end
           old_walk = walking_sleep(old_walk, beat, "beat2")
@@ -105,10 +103,10 @@ with_fx(:reverb, mix: 0.3) do |r|
       live_loop(:beat3,       sync: :metronome) do
         bars        = $bars
         beats       = $beats
-        keys        = $keys
+        key         = $key
         randoms     = $randoms
-        dub         = $dub
-        hard        = $hard
+        playdub     = $playdub
+        playhard    = $playhard
         has_shaker  = $has_shaker
         rkick       = $rkick
         Kicks       = $Kicks
@@ -117,18 +115,17 @@ with_fx(:reverb, mix: 0.3) do |r|
         rsnare      = $rsnare
         Snares      = $Snares
         rsnareacc   = $rsnareacc
-        hook        = $hook
+        playhook    = $playhook
         8.times do
           bar  = bars.look(:bars) - 1
           beat = beats.look(:beats) - 1
-          key  = keys[bar]
           globalrandom1 = randoms.tick
           globalrandom2 = randoms.tick
-          in_dub(bar, dub, r, e)
-          if !hook[bar]
+          in_dub(bar, playdub, r, e)
+          if !playhook[bar]
 
             if rkick[beat]
-              play_kicks(Kicks, bar, dub, hard, has_shaker, globalrandom1, globalrandom2)
+              play_kicks(Kicks, bar, playdub, playhard, has_shaker, globalrandom1, globalrandom2)
             end
 
             if (rcymbal[beat] != 0 && rcymbal[beat] != false)
@@ -140,11 +137,11 @@ with_fx(:reverb, mix: 0.3) do |r|
             end
 
             if rsnare[beat]
-              play_snare(Snares, bar, dub, hard, globalrandom1, globalrandom2)
+              play_snare(Snares, bar, playdub, playhard, globalrandom1, globalrandom2)
             end
 
             if rsnareacc[beat]
-              splash = get_drum(Snares, dub[bar], hard[bar])
+              splash = get_drum(Snares, playdub[bar], playhard[bar])
               a = ((rand > 0.7) ? $ghost.call : $normal.call)
               s = $samplespath + splash
               sample(s,           amp: a * 0.5,           pan: -0.45)
