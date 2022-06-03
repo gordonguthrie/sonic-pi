@@ -32,7 +32,7 @@ mbass0 = ring(0)
 g1 = g2 = g3 = g4 = ring(:r)
 gr = ring(0)
 
-$key = {root: :C, scale: :major}
+$key = {root: :A, scale: :major}
 
 k1 = tabn(["2001","0001","2001","2000"])
 s1 = tabn(["0000","1000","0000","1010"])
@@ -70,7 +70,7 @@ $Shakers    = Shakers2
 ##| $rcymbal   = rcymbal0
 ##| $rsnare    = rsnare0
 ##| $rsnareacc = rsnareacc0
-##| $hooks     = hooks2
+##| $hk        = hk1
 
 $rkick     = rkick1
 $rcymbal   = rcymbal3
@@ -80,18 +80,19 @@ $hk        = hk1
 
 $has_shaker = false
 
-$playdub  = playdub1
+$playdub  = playdub0
 $playhard = playhard0
 $playhook = playhook0
 
-root_a = note($key[:root], octave: 3)
+root_a = note($key[:root], octave: 4)
+print("root_a is", root_a)
 mode_a = $key[:scale]
 print("mode is", mode_a)
 g1a = tab2(["F.ab","FGab","FGab","FGab"], root_a, mode_a)
 g2a = tab2(["...f","a.fe","...f","c.fe"], root_a, mode_a)
 g3a = tab2(["...a","C.ag","...a","c.ag"], root_a, mode_a)
 g4a = tab2(["....","..DC","....","..DC"], root_a, mode_a)
-gra = tabn(["8494"])
+gra = tabn(["8283"])
 
 root_b = note($key[:root], octave: 3)
 mode_b = $key[:scale]
@@ -99,13 +100,21 @@ g1b = tab2(["....","cece","cece","cece"], root_b, mode_b)
 g2b = tab2(["....",".g.g","....","...."], root_b, mode_b)
 g3b = tab2(["....",".B.B","....","...."], root_b, mode_b)
 g4b = tab2(["....","...D","....","...."], root_b, mode_b)
-grb = tabn(["3333"])
+grb = tabn(["3838"])
 
-$g1 = g1a
-$g2 = g2a
-$g3 = g3a
-$g4 = g4a
-$gr = gra
+root_c = note($key[:root], octave: 3)
+mode_c = $key[:scale]
+g1c = tab2(["cgeB", "g.f.","egeD","g.f."], root_c, mode_c)
+g2c = tab2(["e...", "B.F.","g...","...."], root_c, mode_c)
+g3c = tab2(["....", "....","B...","D..."], root_c, mode_c)
+g4c = tab2(["B...", "....","D...","F..."], root_c, mode_c)
+grc = tabn(["8425"])
+
+$g1 = g1c
+$g2 = g2c
+$g3 = g3c
+$g4 = g4c
+$gr = grc
 
 mbass1 = tabn(["1228", "5115"])
 mbass2 = tabn(["1963", "4711"])
@@ -128,7 +137,7 @@ print("durations is", riff[:durations])
 
 ##| mbass      = mbass0
 
-$mbass      = mbass0
+$mbass      = mbass1
 $mdurations = mdurations1
 
 verse_1 = "i_saw_you"

@@ -55,8 +55,8 @@ end
 with_fx(:reverb, mix: 0.3) do |r|
   with_fx(:echo,   mix: 0.2) do |e|
     old_walk = 0
-    ampdist = 0.05
-    amp = 0.2
+    ampdist = 0.01
+    amp = 0.02
     live_loop(:lead, sync: :metronome) do
       g1 = $g1
       g2 = $g2
@@ -66,23 +66,23 @@ with_fx(:reverb, mix: 0.3) do |r|
       bars  = $bars
       beats = $beats
       key = $key
-      div = 8.0
+      div = 5.0
       ##| control c, cutoff: 130
       8.times do
         bar  = bars.look(:bars) - 1
         beat = beats.look(:beats) - 1
-        use_synth :fm
+        use_synth :surfbass
         if g1[beat] != :r
-          play note: g1[beat].to_i, amp: rdist(ampdist, amp), rel: gr[beat]/div + rdist(0.05, 0)
+          play note: g1[beat].to_i, amp: rdist(ampdist, amp), rel: gr[beat]/div + rdist(0.01, 0)
         end
         if g2[beat] != :r
-          play note: g2[beat].to_i, amp: rdist(ampdist, amp), rel: gr[beat]/div + rdist(0.05, 0)
+          play note: g2[beat].to_i, amp: rdist(ampdist, amp), rel: gr[beat]/div + rdist(0.01, 0)
         end
         if g3[beat] != :r
-          play note: g3[beat].to_i, amp: rdist(ampdist, amp), rel: gr[beat]/div + rdist(0.05, 0)
+          play note: g3[beat].to_i, amp: rdist(ampdist, amp), rel: gr[beat]/div + rdist(0.01, 0)
         end
         if g4[beat] != :r
-          play note: g4[beat].to_i, amp: rdist(ampdist, amp), rel: gr[beat]/div + rdist(0.05, 0)
+          play note: g4[beat].to_i, amp: rdist(ampdist, amp), rel: gr[beat]/div + rdist(0.01, 0)
         end
 
         old_walk = walking_sleep(old_walk, beat, "lead")
