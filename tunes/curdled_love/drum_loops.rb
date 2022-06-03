@@ -5,6 +5,8 @@
 ##| | |__| | |  | |_| | | | | | \__ \
 ##| |_____/|_|   \__,_|_| |_| |_|___/
 
+print("DRUMS RELOADED")
+
 use_bpm $bpm
 
 with_fx(:reverb, mix: 0.3) do |r|

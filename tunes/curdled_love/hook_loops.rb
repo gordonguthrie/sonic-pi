@@ -5,6 +5,8 @@
 ##| | |  | | (_) | (_) |   <
 ##| |_|  |_|\___/ \___/|_|\_\
 
+print("HOOK RELOADED")
+
 use_bpm $bpm
 
 with_fx(:reverb, mix: 0.3) do |r|

@@ -1,5 +1,7 @@
 use_debug false
 
+print("MAIN RELOADED")
+
 $bpm = 120
 
 $samplespath = "/Users/gordonguthrie/Dev/sonic-pi/samples/"
@@ -61,8 +63,8 @@ hk1 = {hook:   Hook1,
 $Kicks      = Kicks1
 $Snares     = Snares1
 $Cymbals    = Cymbals1
-$DubShakers = DubShakers1
-$Shakers    = Shakers1
+$DubShakers = DubShakers2
+$Shakers    = Shakers2
 
 ##| $rkick     = rkick0
 ##| $rcymbal   = rcymbal0
@@ -71,18 +73,18 @@ $Shakers    = Shakers1
 ##| $hooks     = hooks2
 
 $rkick     = rkick1
-$rcymbal   = rcymbal1
-$rsnare    = rsnare1
+$rcymbal   = rcymbal3
+$rsnare    = rsnare2
 $rsnareacc = rsnareacc1
 $hk        = hk1
 
-$has_shaker = true
+$has_shaker = false
 
-$playdub  = playdub0
-$playhard = playhard1
+$playdub  = playdub1
+$playhard = playhard0
 $playhook = playhook0
 
-root_a = note($key[:root], octave: 4)
+root_a = note($key[:root], octave: 3)
 mode_a = $key[:scale]
 print("mode is", mode_a)
 g1a = tab2(["F.ab","FGab","FGab","FGab"], root_a, mode_a)
@@ -91,19 +93,19 @@ g3a = tab2(["...a","C.ag","...a","c.ag"], root_a, mode_a)
 g4a = tab2(["....","..DC","....","..DC"], root_a, mode_a)
 gra = tabn(["8494"])
 
-root_b = note($key[:root], octave: 4)
+root_b = note($key[:root], octave: 3)
 mode_b = $key[:scale]
 g1b = tab2(["....","cece","cece","cece"], root_b, mode_b)
 g2b = tab2(["....",".g.g","....","...."], root_b, mode_b)
 g3b = tab2(["....",".B.B","....","...."], root_b, mode_b)
 g4b = tab2(["....","...D","....","...."], root_b, mode_b)
-grb = tabn(["6969"])
+grb = tabn(["3333"])
 
-$g1 = g1b
-$g2 = g2b
-$g3 = g3b
-$g4 = g4b
-$gr = grb
+$g1 = g1a
+$g2 = g2a
+$g3 = g3a
+$g4 = g4a
+$gr = gra
 
 mbass1 = tabn(["1228", "5115"])
 mbass2 = tabn(["1963", "4711"])
@@ -126,10 +128,14 @@ print("durations is", riff[:durations])
 
 ##| mbass      = mbass0
 
-$mbass      = mbass4
-$mdurations = mdurations4
+$mbass      = mbass0
+$mdurations = mdurations1
 
 verse_1 = "i_saw_you"
+verse_2 = "you_kissed_me"
+verse_3 = "i_fucked_you"
+verse_4 = "you_cheated"
+verse_5 = "i_met_her"
 
 chorus_1 = "Chorus I"
 chorus_2 = "Chorus II"
