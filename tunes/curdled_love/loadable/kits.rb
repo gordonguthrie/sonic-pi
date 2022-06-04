@@ -13,9 +13,9 @@ Kicks1 = {
   dubs: ["Kicks_II/808bd3.wav", "Kicks_II/808distbd.wav", "Kicks_II/bjorn1.wav"],
 }
 
-            ##| "Kicks_II/bjorn1.wav",
-            ##| "Japanese/okedo-A4.wav",
-            ##| "Kicks/Kick - Slow & Low.wav"
+##| "Kicks_II/bjorn1.wav",
+##| "Japanese/okedo-A4.wav",
+##| "Kicks/Kick - Slow & Low.wav"
 Kicks2 = {
   main: "Kicks/ElecK01-Kick02.wav",
   ghosts: [
@@ -45,6 +45,26 @@ Snares1 = {
     "Snares_II/chunky-big-snare2.wav",
     "Snares_II/double-reverb-stick.wav",
     "Snares_II/popslap.wav",
+  ],
+}
+Snares2 = {
+  main: "Toms/ElecK02-Tom01.wav",
+  ghosts: [
+    "Toms/ElecK03-Tom01.wav",
+    "Toms/ElecK03-Tom03.wav",
+    "Toms/ElecK03-Tom05.wav",
+    "Toms/K5-Tom01a.wav",
+    "Toms/K5-Tom01c.wav",
+  ],
+  hards: [
+    "Toms/K5-Tom03a.wav",
+    "Toms/K5-Tom03b.wav",
+    "Toms/K5-Tom03c.wav",
+  ],
+  dubs: [
+    "Toms/K3Tom-01.wav",
+    "Toms/K3Tom-05.wav",
+    "Toms/One Shot_FX_Tom_GH.wav"
   ],
 }
 Cymbals1 = {

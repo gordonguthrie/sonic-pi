@@ -5,6 +5,8 @@
 ##|    \  / (_) | | (_|  __/\__ \
 ##|     \/ \___/|_|\___\___||___/
 
+print("VOICES RELOADED")
+
 use_bpm $bpm
 
 vol = 0.7
@@ -24,7 +26,7 @@ with_fx :echo, mix: 0.3 do
       sample s4, amp: amp[3] * rdist(0.1, vol), pan: rdist(0.7, 0)
       s5 = $voicespath + verse + "_005_5.wav"
       sample s5, amp: amp[4] * rdist(0.1, vol), pan: rdist(0.7, 0)
-      sleep 16
+      sleep $vocalsleep
     end
   end
 end

@@ -127,16 +127,14 @@ define(:tab2) do |array, root, mode|
   len1 = array.length
   idx1 = 0
   result = []
-
   octave = note_info(root).octave
   if mode == :major
     key = note_info(root).pitch_class
   elsif mode == :minor
     key = note_info(root).pitch_class - 9
   end
-  C = note_info(:c, octave: octave)
+  C = note_info(:c)
   key_offset = key - C.midi_note
-
   len1.times do
     string = array[idx1]
     len2 = string.length
@@ -144,9 +142,9 @@ define(:tab2) do |array, root, mode|
 
     len2.times do
       if string[idx2] == "a"
-        result.append(make_sym(:a + key_offset, octave - 1))
+        result.append(make_sym(:a + key_offset, octave))
       elsif string[idx2] == "b"
-        result.append(make_sym(:b + key_offset, octave - 1))
+        result.append(make_sym(:b + key_offset, octave))
       elsif string[idx2] == "c"
         result.append(make_sym(:c + key_offset, octave))
       elsif string[idx2] == "d"
@@ -158,9 +156,9 @@ define(:tab2) do |array, root, mode|
       elsif string[idx2] == "g"
         result.append(make_sym(:g + key_offset, octave))
       elsif string[idx2] == "A"
-        result.append(make_sym(:a + key_offset, octave))
+        result.append(make_sym(:a + key_offset, octave + 1))
       elsif string[idx2] == "B"
-        result.append(make_sym(:b + key_offset, octave))
+        result.append(make_sym(:b + key_offset, octave + 1))
       elsif string[idx2] == "C"
         result.append(make_sym(:c + key_offset, octave + 1))
       elsif string[idx2] == "D"

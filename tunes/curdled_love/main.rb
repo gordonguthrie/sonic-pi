@@ -2,8 +2,6 @@ use_debug false
 
 print("MAIN RELOADED")
 
-$bpm = 120
-
 $samplespath = "/Users/gordonguthrie/Dev/sonic-pi/samples/"
 $voicespath = "/Users/gordonguthrie/Dev/sonic-pi/tunes/curdled_love/voices/"
 
@@ -32,8 +30,6 @@ mbass0 = ring(0)
 g1 = g2 = g3 = g4 = ring(:r)
 gr = ring(0)
 
-$key = {root: :A, scale: :major}
-
 k1 = tabn(["2001","0001","2001","2000"])
 s1 = tabn(["0000","1000","0000","1010"])
 w1 = tabn(["2000","2000","1210","1121"])
@@ -50,6 +46,7 @@ rcymbal2   = tabn(["1310","1134"])
 rcymbal3   = tabn(["3230","3321"])
 hooks1     = tabn(["1020","2430"])
 hooks2     = tabn(["1012","1413"])
+hooks3     = tabn(["1012","1413","1032","0232"])
 
 playdub1  = tabb(["0010","0010"])
 playdub2  = tabb(["0011","1000"])
@@ -57,37 +54,23 @@ playhard1 = tabb(["0000","0100"])
 playhard2 = tabb(["0001","1100"])
 playhook1 = tabb(["01"])
 
-hk1 = {hook:   Hook1,
-       rhythm: hooks1}
+bass1 = tabn(["1228", "5115"])
+bass2 = tabn(["1963", "4711"])
+bass3 = tabn(["1634", "7113"])
+bass4 = tabn(["1851", "5216"])
+bass5 = tabn(["1347", "1319"])
+durations1 = [2.0, 0.5,  1.0, 0.35, 0.7, 0.4,  2.0, 0.0]
+durations2 = [2.0, 0.25, 0.7, 0.25, 0.5, 0.5,  2.0, 0.25]
+durations3 = [2.0, 0.5,  0.7, 0.25, 1.0, 0.25, 2.0, 0.4]
+durations4 = [2.0, 0.25, 0.7, 0.4,  0.0, 0.35, 2.0, 0.4]
+durations5 = [2.0, 0.25, 0.5, 0.5,  0.5, 0.4 , 2.0, 0.4]
 
-$Kicks      = Kicks1
-$Snares     = Snares1
-$Cymbals    = Cymbals1
-$DubShakers = DubShakers2
-$Shakers    = Shakers2
-
-##| $rkick     = rkick0
-##| $rcymbal   = rcymbal0
-##| $rsnare    = rsnare0
-##| $rsnareacc = rsnareacc0
-##| $hk        = hk1
-
-$rkick     = rkick1
-$rcymbal   = rcymbal3
-$rsnare    = rsnare2
-$rsnareacc = rsnareacc1
-$hk        = hk1
-
-$has_shaker = false
-
-$playdub  = playdub0
-$playhard = playhard0
-$playhook = playhook0
+riff = make_riff(9, rkick1.drop(8), 0.2)
+bassx = riff[:beats]
+durationsx = riff[:durations]
 
 root_a = note($key[:root], octave: 4)
-print("root_a is", root_a)
 mode_a = $key[:scale]
-print("mode is", mode_a)
 g1a = tab2(["F.ab","FGab","FGab","FGab"], root_a, mode_a)
 g2a = tab2(["...f","a.fe","...f","c.fe"], root_a, mode_a)
 g3a = tab2(["...a","C.ag","...a","c.ag"], root_a, mode_a)
@@ -110,35 +93,42 @@ g3c = tab2(["....", "....","B...","D..."], root_c, mode_c)
 g4c = tab2(["B...", "....","D...","F..."], root_c, mode_c)
 grc = tabn(["8425"])
 
-$g1 = g1c
-$g2 = g2c
-$g3 = g3c
-$g4 = g4c
-$gr = grc
+funk1 = {bass: bass1,
+         durations: durations1,
+         g1: g1a, g2: g2a, g3: g3a, g4: g4a, gr: gra}
 
-mbass1 = tabn(["1228", "5115"])
-mbass2 = tabn(["1963", "4711"])
-mbass3 = tabn(["1634", "7113"])
-mbass4 = tabn(["1851", "5216"])
-mbass5 = tabn(["1347", "1319"])
-mdurations1 = [2.0, 0.5,  1.0, 0.35, 0.7, 0.4,  2.0, 0.0]
-mdurations2 = [2.0, 0.25, 0.7, 0.25, 0.5, 0.5,  2.0, 0.25]
-mdurations3 = [2.0, 0.5,  0.7, 0.25, 1.0, 0.25, 2.0, 0.4]
-mdurations4 = [2.0, 0.25, 0.7, 0.4,  0.0, 0.35, 2.0, 0.4]
-mdurations5 = [2.0, 0.25, 0.5, 0.5,  0.5, 0.4 , 2.0, 0.4]
+hk1 = {hook:   Hook1,
+       rhythm: hooks1}
+hk2 = {hook:   Hook2,
+       rhythm: hooks2}
+hk3 = {hook:   Hook3,
+       rhythm: hooks3}
 
-riff = make_riff(9, rkick1.drop(8), 0.2)
-mbassx = riff[:beats]
-mdurationsx = riff[:durations]
+$bpm = 120
 
-print("mbass is", mbassx)
-print("bass is", numring_to_string(riff[:beats]))
-print("durations is", riff[:durations])
+$key = {root: :c, scale: :major}
 
-##| mbass      = mbass0
+$Kicks      = Kicks2
+$Snares     = Snares2
+$Cymbals    = Cymbals2
+$DubShakers = DubShakers1
+$Shakers    = Shakers1
 
-$mbass      = mbass1
-$mdurations = mdurations1
+$rkick     = rkick0
+$rcymbal   = rcymbal0
+$rsnare    = rsnare0
+$rsnareacc = rsnareacc0
+$hk        = hk3
+
+$has_shaker = false
+
+$playdub  = playdub0
+$playhard = playhard0
+$playhook = playhook0
+
+$funk    = funk1
+$divisor = 5.0
+$leadamp = 0.00
 
 verse_1 = "i_saw_you"
 verse_2 = "you_kissed_me"
@@ -150,7 +140,8 @@ chorus_1 = "Chorus I"
 chorus_2 = "Chorus II"
 chorus_3 = "Chorus III"
 
-$verse = chorus_3
+$verse = verse_5
+##| $verse = chorus_1
 
 amp0 = [0, 0, 0, 0, 0]
 amp1 = [1, 0, 0, 0, 0]
@@ -160,6 +151,7 @@ amp4 = [1, 1, 0, 1, 1]
 amp5 = [1, 0, 1, 1, 1]
 amp6 = [1, 1, 1, 1, 1]
 
+$vocalsleep = 16
 $amp = amp0
 
 $ghost  = -> { rrand(0.2, 0.3) }

@@ -13,17 +13,18 @@ with_fx(:level, amp: 0.5) do
   old_walk = 0
 
   live_loop(:bass,   sync: :metronome) do
-    bars       = $bars
-    beats      = $beats
-    key        = $key
-    mbass      = $mbass
-    mdurations = $mdurations
+    bars      = $bars
+    beats     = $beats
+    key       = $key
+    funk      = $funk
+    bass      = funk[:bass]
+    durations = funk[:durations]
     8.times do
       bar  = bars.look(:bars) - 1
       beat = beats.look(:beats) - 1
       Chord1 = (chord(key[:root], "13"))
-      m = mbass.look(:mbass)
-      d = mdurations.look(:mdurations)
+      m = bass.look(:bass)
+      d = durations.look(:durations)
       pan = rdist(0.1, 0.2)
       n = Chord1[m] - 36
 
@@ -46,8 +47,8 @@ with_fx(:level, amp: 0.5) do
       end
 
       beats.tick(:beats)
-      mbass.tick(:mbass)
-      mdurations.tick(:mdurations)
+      bass.tick(:bass)
+      durations.tick(:durations)
     end
   end
 end
@@ -55,23 +56,27 @@ end
 with_fx(:reverb, mix: 0.3) do |r|
   with_fx(:echo,   mix: 0.2) do |e|
     old_walk = 0
-    ampdist = 0.01
-    amp = 0.02
     live_loop(:lead, sync: :metronome) do
-      g1 = $g1
-      g2 = $g2
-      g3 = $g3
-      g4 = $g4
-      gr = $gr
       bars  = $bars
       beats = $beats
-      key = $key
-      div = 5.0
-      ##| control c, cutoff: 130
+      key   = $key
+      funk  = $funk
+      div   = $divisor
+      amp   = $leadamp
+      dub   = $playdub
+      g1 = funk[:g1]
+      g2 = funk[:g2]
+      g3 = funk[:g3]
+      g4 = funk[:g4]
+      gr = funk[:gr]
+      ampdist = amp/10.0
       8.times do
         bar  = bars.look(:bars) - 1
         beat = beats.look(:beats) - 1
         use_synth :surfbass
+        if dub[bar] then
+          div = 0.5
+        end
         if g1[beat] != :r
           play note: g1[beat].to_i, amp: rdist(ampdist, amp), rel: gr[beat]/div + rdist(0.01, 0)
         end
