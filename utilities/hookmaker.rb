@@ -1,9 +1,9 @@
 use_debug false
 
 current_bpm = 120
-use_bpm current_bpm
+use_bpm 120
 
-use_random_seed 1004
+use_random_seed 1023
 
 samplespath = "/Users/gordonguthrie/Dev/sonic-pi/samples/"
 ##| load_synthdefs "/Users/gordonguthrie/.synthdefs"
@@ -16,6 +16,7 @@ hook = []
 slps = []
 
 total = 0
+tot = 0
 
 sounds.times do | n |
   slp = sleeps.choose
@@ -24,11 +25,12 @@ sounds.times do | n |
     hook[n] = {sleep: slp,
                sample: "African/wavedrum1.wav"}
     slps[n] = slp
+    tot = total
   end
 end
 
-print("hook is", hook)
-print("yoqwza")
+print("slps is", slps)
+print("tot is", tot)
 
 hook = hook.ring
 
