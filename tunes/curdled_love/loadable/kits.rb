@@ -9,7 +9,7 @@ Kicks1 = {
     "Kicks_II/lowdrum.wav",
     "Kicks/ElecK02-Kick01.wav",
   ],
-  hards: ["Kicks_II/broken-head-drum.wav", "Japanese/big_taiko.wav", "Japanese/taiko_1.wav"],
+  hards: ["Kicks_II/broken-head-drum.wav", "Japanese/taiko_1.wav", "Japanese/taiko_1.wav"],
   dubs: ["Kicks_II/808bd3.wav", "Kicks_II/808distbd.wav", "Kicks_II/bjorn1.wav"],
 }
 
@@ -87,7 +87,7 @@ Cymbals2 = {
   ],
 }
 Shakers1 = ["African/gungru2.wav", "African/gungru3.wav", "African/gungru5.wav"]
-Shakers2 = ["Wierdos/vibra-crunchy-1.wav", "Wierdos/vibra-crunchy-1.wav", "Wierdos/zippy-wave.wav"]
+Shakers2 = ["Wierdos/vibra-crunchy-1.wav", "Wierdos/vibra-crunchy-2.wav", "Wierdos/zippy-wave.wav"]
 Shakers3 = ["Punches/mellow-stab.wav"]
 Shakers4 = [
   "Punches/stab-satisfying-1.wav",

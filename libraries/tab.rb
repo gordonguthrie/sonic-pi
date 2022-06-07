@@ -1,3 +1,25 @@
+define(:tab) do |array|
+  len1 = array.length
+  idx1 = 0
+  result = []
+
+  len1.times do
+    string = array[idx1]
+    len2 = string.length
+    idx2 = 0
+
+    len2.times do
+      result.append(string[idx2])
+
+      idx2 = idx2 + 1
+    end
+
+    idx1 = idx1 + 1
+  end
+
+  return result.ring
+end
+
 define(:tabb) do |array|
   len1 = array.length
   idx1 = 0
@@ -85,38 +107,36 @@ define(:tabh) do |array|
   return result.ring
 end
 
-define(:tabs) do |array|
+define(:tabs) do |array, root, mode|
   len1 = array.length
   idx1 = 0
   result = []
-
+  Scale = scale(root, mode)
   len1.times do
     string = array[idx1]
     len2 = string.length
     idx2 = 0
 
     len2.times do
-      if string[idx2] == "A" || string[idx2] == "a"
-        result.append(:A)
-      elsif string[idx2] == "B" || string[idx2] == "b"
-        result.append(:B)
-      elsif string[idx2] == "C" || string[idx2] == "c"
-        result.append(:C)
+      if string[idx2] == "C" || string[idx2] == "c"
+        result.append(Scale.notes[0])
       elsif string[idx2] == "D" || string[idx2] == "d"
-        result.append(:D)
+        result.append(Scale.notes[1])
       elsif string[idx2] == "E" || string[idx2] == "e"
-        result.append(:E)
+        result.append(Scale.notes[2])
       elsif string[idx2] == "F" || string[idx2] == "f"
-        result.append(:F)
+        result.append(Scale.notes[3])
       elsif string[idx2] == "G" || string[idx2] == "g"
-        result.append(:G)
+        result.append(Scale.notes[4])
+      elsif string[idx2] == "A" || string[idx2] == "a"
+        result.append(Scale.notes[5])
+      elsif string[idx2] == "B" || string[idx2] == "b"
+        result.append(Scale.notes[6])
       else
         result.append(:r)
       end
-
       idx2 = idx2 + 1
     end
-
     idx1 = idx1 + 1
   end
 
@@ -127,48 +147,41 @@ define(:tab2) do |array, root, mode|
   len1 = array.length
   idx1 = 0
   result = []
-  octave = note_info(root).octave
-  if mode == :major
-    key = note_info(root).pitch_class
-  elsif mode == :minor
-    key = note_info(root).pitch_class - 9
-  end
-  C = note_info(:c)
-  key_offset = key - C.midi_note
+  Scale = scale(root, mode, num_octaves: 2)
   len1.times do
     string = array[idx1]
     len2 = string.length
     idx2 = 0
 
     len2.times do
-      if string[idx2] == "a"
-        result.append(make_sym(:a + key_offset, octave))
-      elsif string[idx2] == "b"
-        result.append(make_sym(:b + key_offset, octave))
-      elsif string[idx2] == "c"
-        result.append(make_sym(:c + key_offset, octave))
+      if string[idx2] == "c"
+        result.append(Scale.notes[0])
       elsif string[idx2] == "d"
-        result.append(make_sym(:d + key_offset, octave))
+        result.append(Scale.notes[1])
       elsif string[idx2] == "e"
-        result.append(make_sym(:e + key_offset, octave))
+        result.append(Scale.notes[2])
       elsif string[idx2] == "f"
-        result.append(make_sym(:f + key_offset, octave))
+        result.append(Scale.notes[3])
       elsif string[idx2] == "g"
-        result.append(make_sym(:g + key_offset, octave))
-      elsif string[idx2] == "A"
-        result.append(make_sym(:a + key_offset, octave + 1))
-      elsif string[idx2] == "B"
-        result.append(make_sym(:b + key_offset, octave + 1))
+        result.append(Scale.notes[4])
+      elsif string[idx2] == "a"
+        result.append(Scale.notes[5])
+      elsif string[idx2] == "b"
+        result.append(Scale.notes[6])
       elsif string[idx2] == "C"
-        result.append(make_sym(:c + key_offset, octave + 1))
+        result.append(Scale.notes[7])
       elsif string[idx2] == "D"
-        result.append(make_sym(:d + key_offset, octave + 1))
+        result.append(Scale.notes[8])
       elsif string[idx2] == "E"
-        result.append(make_sym(:e + key_offset, octave + 1))
+        result.append(Scale.notes[9])
       elsif string[idx2] == "F"
-        result.append(make_sym(:f + key_offset, octave + 1))
+        result.append(Scale.notes[10])
       elsif string[idx2] == "G"
-        result.append(make_sym(:g + key_offset, octave + 1))
+        result.append(Scale.notes[11])
+      elsif string[idx2] == "A"
+        result.append(Scale.notes[12])
+      elsif string[idx2] == "B"
+        result.append(Scale.notes[13])
       else
         result.append(:r)
       end
@@ -181,6 +194,42 @@ define(:tab2) do |array, root, mode|
 
   return result.ring
 end
+
+define(:tabc) do |array|
+  len1 = array.length
+  idx1 = 0
+  result = []
+  len1.times do
+    string = array[idx1]
+    len2 = string.length
+    idx2 = 0
+
+    len2.times do
+      if string[idx2] == "1"
+        result.append(:i)
+      elsif string[idx2] == "2"
+        result.append(:ii)
+      elsif string[idx2] == "3"
+        result.append(:iii)
+      elsif string[idx2] == "4"
+        result.append(:iv)
+      elsif string[idx2] == "5"
+        result.append(:v)
+      elsif string[idx2] == "6"
+        result.append(:vi)
+      elsif string[idx2] == "7"
+        result.append(:vii)
+      else
+        result.append(:r)
+      end
+      idx2 = idx2 + 1
+    end
+    idx1 = idx1 + 1
+  end
+
+  return result.ring
+end
+
 
 define(:make_sym) do | midi, octave |
   n = note_info(midi.to_i + (octave - 4) * 12).midi_string
