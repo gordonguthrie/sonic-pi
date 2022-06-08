@@ -4,19 +4,11 @@
 ##| | |   | | | | '__/ _` | |/ _ \/ _` |
 ##| | |___| |_| | | | (_| | |  __/ (_| |
 ##|  \_____\__,_|_|  \__,_|_|\___|\__,_|
-
-#            _                  _
-#           | |                | |
-#   _____  _| |_ _ __ __ _  ___| |_
-#  / _ \ \/ / __| '__/ _` |/ __| __|
-# |  __/>  <| |_| | | (_| | (__| |_
-#  \___/_/\_\\__|_|  \__,_|\___|\__|
-#                   _   _
-#                  | | (_)
-#  _ __ _   _ _ __ | |_ _ _ __ ___   ___
-# | '__| | | | '_ \| __| | '_ ` _ \ / _ \
-# | |  | |_| | | | | |_| | | | | | |  __/
-# |_|   \__,_|_| |_|\__|_|_| |_| |_|\___|
+##| | |
+##| | |     _____   _____
+##| | |    / _ \ \ / / _ \
+##| | |___| (_) \ V /  __/
+##| |______\___/ \_/ \___|
 
 print("MAIN RELOADED")
 
@@ -32,7 +24,7 @@ run_file("/Users/gordonguthrie/Dev/sonic-pi/tunes/curdled_love/loadable/hooks.rb
 run_file("/Users/gordonguthrie/Dev/sonic-pi/tunes/curdled_love/loadable/runtime.rb")
 run_file("/Users/gordonguthrie/Dev/sonic-pi/libraries/make_riffs.rb")
 run_file("/Users/gordonguthrie/Dev/sonic-pi/libraries/suns_out_guns_out.rb")
-run_file("/Users/gordonguthrie/Dev/sonic-pi/libraries/play_routines.rb")
+##| run_file("/Users/gordonguthrie/Dev/sonic-pi/libraries/play_routines.rb")
 run_file("/Users/gordonguthrie/Dev/sonic-pi/libraries/bag_of_randoms.rb")
 run_file("/Users/gordonguthrie/Dev/sonic-pi/libraries/tab.rb")
 
@@ -89,66 +81,42 @@ riff = make_riff(9, rkick1.drop(8), 0.2)
 bassx = riff[:beats]
 durationsx = riff[:durations]
 
-root_a = note($key[:root], octave: 4)
-mode_a = $key[:scale]
-g1a = tab2(["F.ab","FGab","FGab","FGab"], root_a, mode_a)
-g2a = tab2(["...f","a.fe","...f","c.fe"], root_a, mode_a)
-g3a = tab2(["...a","C.ag","...a","c.ag"], root_a, mode_a)
-g4a = tab2(["....","..DC","....","..DC"], root_a, mode_a)
-gra = tabn(["8283"])
+$key = {root: :d, scale: :major}
 
-root_b = note($key[:root], octave: 3)
-mode_b = $key[:scale]
-g1b = tab2(["....","cece","cece","cece"], root_b, mode_b)
-g2b = tab2(["....",".g.g","....","...."], root_b, mode_b)
-g3b = tab2(["....",".B.B","....","...."], root_b, mode_b)
-g4b = tab2(["....","...D","....","...."], root_b, mode_b)
-grb = tabn(["3838"])
+funk1 = {bass: bass1, durations: durations1}
+funk2 = {bass: bass2, durations: durations2}
+funk3 = {bass: bass3, durations: durations3}
+funk4 = {bass: bass4, durations: durations4}
+funk5 = {bass: bass5, durations: durations5}
 
-root_c = note($key[:root], octave: 3)
-mode_c = $key[:scale]
-g1c = tab2(["cgeB", "g.f.","egeD","g.f."], root_c, mode_c)
-g2c = tab2(["e...", "B.F.","g...","...."], root_c, mode_c)
-g3c = tab2(["....", "....","B...","D..."], root_c, mode_c)
-g4c = tab2(["B...", "....","D...","F..."], root_c, mode_c)
-grc = tabn(["8425"])
-
-funk1 = {bass: bass1,
-         durations: durations1,
-         g1: g1a, g2: g2a, g3: g3a, g4: g4a, gr: gra}
-
-hk1 = {hook:   Hook1,
-       rhythm: hooks1}
-hk2 = {hook:   Hook2,
-       rhythm: hooks2}
-hk3 = {hook:   Hook3,
-       rhythm: hooks3}
+hk1 = {hook: Hook1, rhythm: hooks1}
+hk2 = {hook: Hook2, rhythm: hooks2}
+hk3 = {hook: Hook3, rhythm: hooks3}
+hk4 = {hook: Hook4, rhythm: hooks1}
+hk5 = {hook: Hook5, rhythm: hooks2}
 
 $bpm = 120
 
-$key = {root: :c, scale: :major}
-
-$Kicks      = Kicks2
+$Kicks      = Kicks1
 $Snares     = Snares2
 $Cymbals    = Cymbals2
 $DubShakers = DubShakers1
+
 $Shakers    = Shakers1
 
-$rkick     = rkick0
-$rcymbal   = rcymbal0
-$rsnare    = rsnare0
-$rsnareacc = rsnareacc0
+$rkick     = rkick1
+$rcymbal   = rcymbal2
+$rsnare    = rsnare2
+$rsnareacc = rsnareacc1
 $hk        = hk3
 
-$has_shaker = false
+$has_shaker = true
 
 $playdub  = playdub0
 $playhard = playhard0
 $playhook = playhook0
 
-$funk    = funk1
-$divisor = 5.0
-$leadamp = 0.00
+$funk = funk2
 
 verse_1 = "i_saw_you"
 verse_2 = "you_kissed_me"
@@ -160,8 +128,8 @@ chorus_1 = "Chorus I"
 chorus_2 = "Chorus II"
 chorus_3 = "Chorus III"
 
-$verse = verse_5
-##| $verse = chorus_1
+##| $verse = verse_4
+$verse = chorus_3
 
 amp0 = [0, 0, 0, 0, 0]
 amp1 = [1, 0, 0, 0, 0]
@@ -172,7 +140,7 @@ amp5 = [1, 0, 1, 1, 1]
 amp6 = [1, 1, 1, 1, 1]
 
 $vocalsleep = 16
-$amp = amp0
+$amp = amp6
 
 $ghost  = -> { rrand(0.2, 0.3) }
 $normal = -> { rrand(0.4, 0.6) }

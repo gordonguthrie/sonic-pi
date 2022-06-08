@@ -13,9 +13,6 @@ Kicks1 = {
   dubs: ["Kicks_II/808bd3.wav", "Kicks_II/808distbd.wav", "Kicks_II/bjorn1.wav"],
 }
 
-##| "Kicks_II/bjorn1.wav",
-##| "Japanese/okedo-A4.wav",
-##| "Kicks/Kick - Slow & Low.wav"
 Kicks2 = {
   main: "Kicks/ElecK01-Kick02.wav",
   ghosts: [
@@ -88,15 +85,10 @@ Cymbals2 = {
 }
 Shakers1 = ["African/gungru2.wav", "African/gungru3.wav", "African/gungru5.wav"]
 Shakers2 = ["Wierdos/vibra-crunchy-1.wav", "Wierdos/vibra-crunchy-2.wav", "Wierdos/zippy-wave.wav"]
-Shakers3 = ["Punches/mellow-stab.wav"]
-Shakers4 = [
-  "Punches/stab-satisfying-1.wav",
-  "Punches/stab-satisfying-2.wav",
-  "Punches/stab-satisfying-3.wav",
-]
-Shakers5 = ["Punches/stabs-hits-071.wav", "Punches/stabs-hits-109.wav"]
-Shakers6 = ["Punches/stabs-hits-170.wav"]
-DubShakers1 = ["Wierdos/bottletop.wav", "Wierdos/bendy-metal-hit.wav", "Wierdos/space-percussion.wav"]
+Shakers3 = ["Claps/Vrb-clap1.wav", "Claps/pong-verb-clap.wav", "Claps/divine-clap-ring.wav"]
+Shakers4 = ["Punches/mellow-stab.wav"]
+Shakers5 = ["Punches/stabs-hits-071.wav"]
+Shakers6 = ["Punches/stabs-hits-109.wav"]
 
-#  "Wierdos/fun_frog.wav",
+DubShakers1 = ["Wierdos/bottletop.wav", "Wierdos/bendy-metal-hit.wav", "Wierdos/space-percussion.wav"]
 DubShakers2 = ["Punches/stabs-hits-004.wav", "Punches/stabs-hits-005.wav"]
