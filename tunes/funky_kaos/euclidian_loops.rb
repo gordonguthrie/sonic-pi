@@ -19,20 +19,29 @@ with_fx :reverb, mix: 0.2 do | r |
     live_loop :euclidian, sync: :metronome do
       use_bpm $bpm
 
-      shaker   = $shaker
-      steelies = $steelies
-      beats    = $beats
-      bars     = $bars
+      shaker     = $shaker
+      euclidians = $euclidians
+      punch      = $punch
+      clap       = $clap
+      beats      = $beats
+      bars       = $bars
+      Shaker     = $Shaker
+      Punch      = $Punch
+      Clap       = $Clap
       $switch_count.times do
         beat = beats.look(:beats) - 1
         bar  = bars.look(:bars) - 1
         if shaker[bar] && (count % 8 == 1)
-          sample $samplespath + "Wierdos/vibra-crunchy-1.wav", amp: 0.2
+          print("playing shaker", Shaker)
+          sample $samplespath + Shaker, amp: 0.2
         end
-        if steelies[beat]
-          sample $samplespath + "Wierdos/three-beep-stereo.wav", amp: 0.1
-          ##| sample $samplespath + "Punches/mellow-stab.wav", amp: 0.3
-          ##| sample $samplespath + "Springs/Amazing Stereo Spring.aif", amp: 0.3
+        if euclidians[bar] && punch[beat]
+          print("playing punch", Punch)
+          sample $samplespath + Punch, amp: 0.15
+        end
+        if euclidians[bar] && clap[beat]
+          print("playing clap", Clap)
+          sample $samplespath + Clap, amp: 0.15
         end
 
         old_walk = walking_sleep(old_walk, beat, "drums_2")

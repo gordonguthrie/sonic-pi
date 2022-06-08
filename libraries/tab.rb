@@ -236,6 +236,23 @@ define(:make_sym) do | midi, octave |
   return n.to_sym
 end
 
+define(:bool_to_string) do | ring |
+  len = ring.length
+  str = []
+  idx = 0
+
+  len.times do
+    if ring[idx]
+      str.append("1")
+    else
+      str.append("0")
+    end
+    idx = idx + 1
+  end
+
+  return str.join("")
+end
+
 define(:numring_to_string) do |ring|
   len = ring.length
   str = []

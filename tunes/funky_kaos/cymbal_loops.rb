@@ -25,7 +25,6 @@ with_fx :reverb, mix: 0.2 do | r |
       bars    = $bars
       $switch_count.times do
         beat = beats.look(:beats) - 1
-        print("beat in :cymbals", beat)
 
         if cymbal[beat] != 0
           c = $Cymbals[cymbal[beat] - 1]
