@@ -31,17 +31,19 @@ with_fx :reverb, mix: 0.2 do | r |
       $switch_count.times do
         beat = beats.look(:beats) - 1
         bar  = bars.look(:bars) - 1
-        if shaker[bar] && (count % 8 == 1)
-          print("playing shaker", Shaker)
-          sample $samplespath + Shaker, amp: 0.2
-        end
-        if euclidians[bar] && punch[beat]
-          print("playing punch", Punch)
-          sample $samplespath + Punch, amp: 0.15
-        end
-        if euclidians[bar] && clap[beat]
-          print("playing clap", Clap)
-          sample $samplespath + Clap, amp: 0.15
+        if !$hook[bar]
+          if shaker[bar] && (count % 8 == 1)
+            ##| print("playing shaker", Shaker)
+            sample $samplespath + Shaker, amp: 0.2
+          end
+          if euclidians[bar] && punch[beat]
+            ##| print("playing punch", Punch)
+            sample $samplespath + Punch, amp: 0.15
+          end
+          if euclidians[bar] && clap[beat]
+            ##| print("playing clap", Clap)
+            sample $samplespath + Clap, amp: 0.15
+          end
         end
 
         old_walk = walking_sleep(old_walk, beat, "drums_2")
