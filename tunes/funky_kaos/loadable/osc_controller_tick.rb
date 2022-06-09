@@ -76,6 +76,9 @@ live_loop(:tick_key) do
   print(" |_|\_\___|\_, |                 ")
   print("           |__/                  ")
   $key = $Keys.tick
+  make_bass()
+  $bass = $basscontrols.tick
+  print("key is", $key)
 end
 
 live_loop(:tick_euclidian_clap) do
@@ -137,6 +140,7 @@ live_loop(:tick_euclids) do
   print(" | _| || / _| | / _` |")
   print(" |___\_,_\__|_|_\__,_|")
   $euclidians = $echteuclidians.tick
+  print("euclidians is", $euclidians)
 end
 
 live_loop(:tick_punches) do
@@ -176,7 +180,8 @@ live_loop(:tick_claps) do
   print(" | (__| / _` | '_ (_-<")
   print("  \___|_\__,_| .__/__/")
   print("             |_|      ")
-  $Claps = $Claps.tick
+  $Clap = $Claps.tick
+  print("Claps is", $Clap)
 end
 
 live_loop(:calmer) do

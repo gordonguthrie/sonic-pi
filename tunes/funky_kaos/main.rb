@@ -52,8 +52,8 @@ $Punches = [
 $Claps = [
   "Claps/Vrb-clap1.wav",
   "Claps/compressed-clap.wav",
-  "Claps/compressed-clap.wav",
-  "Claps/compressed-clap.wav",
+  "Claps/thin-wispy-clap.wav",
+  "Claps/real-room-clap.wav",
 ].ring
 
 $Shakers = [
@@ -68,20 +68,31 @@ $Modes = [:major, :minor].ring
 $key  = $Keys[0]
 $mode = $Modes[0]
 
+
+
 kick1    = tabb(["1000","0000","1000","0000"])
 kick2    = tabb(["1000","0001","1000","0000"])
 snare1   = tabb(["0000","1000","0000","1000"])
 snare2   = tabb(["1000","1000","1100","1000"])
 cymbal1  = tabn(["1010","1140","1020","1030","2121"])
 cymbal2  = tabn(["1415","1414","1414"])
-nbass1   = tab2(["c.ee","e.gG","g.bB","e.cC"], $key, $mode)
-bassamp1 = tabn(["6070"])
-nbass2   = tab2(["cegB","Afdc",], $key, $mode)
-bassamp2 = tabn(["4556"])
 
-bass0 = {nbass: nbass1, bassamp: ring(0)}
-bass1 = {nbass: nbass1, bassamp: bassamp1}
-bass2 = {nbass: nbass2, bassamp: bassamp2}
+
+define (:make_bass) do
+  nbass1   = tab2(["c.ee","e.gG","g.bB","e.cC"], $key, $mode)
+  bassamp1 = tabn(["6070"])
+  nbass2   = tab2(["cegB","Afdc",], $key, $mode)
+  bassamp2 = tabn(["4556"])
+
+  bass0 = {nbass: nbass1, bassamp: ring(0)}
+  bass1 = {nbass: nbass1, bassamp: bassamp1}
+  bass2 = {nbass: nbass2, bassamp: bassamp2}
+
+  $basscontrols = [bass1, bass2].ring
+  $bass         = bass1
+end
+
+make_bass()
 
 hook1       = spread(3, 37)
 shaker1     = spread(3, 7)
@@ -104,7 +115,6 @@ $Shaker = $Shakers[0]
 $hook       = hook0
 $kick       = kick1
 $snare      = snare1
-$bass       = bass1
 $cymbal     = cymbal1
 $shaker     = shaker0
 $euclidians = euclidians1
@@ -118,7 +128,6 @@ end
 
 $kickcontrols     = [kick1, kick2].ring
 $snarecontrols    = [snare1, snare2].ring
-$basscontrols     = [bass1, bass2].ring
 $punchcontrols    = [punch1, punch2, punch3].ring
 $clapcontrols     = [clap1, clap2, clap3, clap4].ring
 $cymbalcontrols   = [cymbal1, cymbal2].ring
