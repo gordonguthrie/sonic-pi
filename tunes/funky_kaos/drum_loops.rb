@@ -27,17 +27,17 @@ with_fx :compressor do
         $switch_count.times do
           bar = bars.look(:bars) - 1
           beat = beats.look(:beats) - 1
+          if kick[beat] then
+            sinfreq = rdist(10, 70)
+            glissf = rdist(0, 0.9)
+            att = rdist(0, 0.01)
+            a = $normal.call * $KickAmp
+            use_synth(:sc_kick)
+            play(amp: a, pan: 0.5, sinfreq: sinfreq, glissf: glissf,     att: att)
+          end
           if !$hook[bar]
-            if kick[beat] then
-              sinfreq = rdist(10, 70)
-              glissf = rdist(0, 0.9)
-              att = rdist(0, 0.01)
-              a = $normal.call * 0.2
-              use_synth(:sc_kick)
-              play(amp: a, pan: 0.5, sinfreq: sinfreq, glissf: glissf,     att: att)
-            end
             if snare[beat] then
-              sample sdrum, amp: $normal.call * 0.4, pan: 0.8
+              sample sdrum, amp: $normal.call * $SnareAmp, pan: rdist(0.1, 0.8)
             end
           end
           old_walk = walking_sleep(old_walk, beat, "drums_ 1")
@@ -65,17 +65,17 @@ with_fx :compressor do
         $switch_count.times do
           bar = bars.look(:bars) - 1
           beat = beats.look(:beats) - 1
+          if kick[beat] then
+            sinfreq = rdist(10, 70)
+            glissf = rdist(0, 0.9)
+            att = rdist(0, 0.01)
+            a = $normal.call * $KickAmp
+            use_synth(:sc_kick)
+            play(amp: a, pan: -0.5, sinfreq: sinfreq, glissf: glissf,     att: att)
+          end
           if !$hook[bar]
-            if kick[beat] then
-              sinfreq = rdist(10, 70)
-              glissf = rdist(0, 0.9)
-              att = rdist(0, 0.01)
-              a = $normal.call * 0.2
-              use_synth(:sc_kick)
-              play(amp: a, pan: -0.5, sinfreq: sinfreq, glissf: glissf,     att: att)
-            end
             if snare[beat] then
-              sample sdrum, amp: $normal.call * 0.4, pan: -0.8
+              sample sdrum, amp: $normal.call * $SnareAmp, pan: rdist(0.1, -0.8)
             end
           end
           old_walk = walking_sleep(old_walk, beat, "drums_2")
@@ -105,7 +105,7 @@ with_fx :compressor do
           beat = beats.look(:beats) - 1
           if !$hook[bar]
             if snare[beat] then
-              sample sdrum, amp: $normal.call * 0.4, pan: -0.1
+              sample sdrum, amp: $normal.call * $SnareAmp, pan: rdist(0.1, -0.13)
             end
           end
           old_walk = walking_sleep(old_walk, beat, "drums_3")

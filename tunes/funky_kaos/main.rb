@@ -27,11 +27,20 @@ $randoms = bag_of_randoms(1024)
 
 $swing_time = 0.1
 
-$switch_count = 16
+$switch_count = 8
 
 hook0 = kick0 = snare0 = shaker0 = punches0 = euclidians0 = ring(false)
 cymbal0 = bassamp0 = champ0 = ring(0)
 chords0 = ring(:r)
+
+$KickAmp   = 0.2
+$SnareAmp  = 0.4
+$CymbalAmp = 0.4
+$BassAmp   = 0.08
+$HookAmp   = 0.2
+$ShakerAmp = 0.2
+$PunchAmp  = 0.15
+$ClapAmp   = 0.15
 
 $Cymbals = [
   :drum_cymbal_soft,
@@ -65,10 +74,8 @@ $Shakers = [
 $Keys = [:c1, :d1, :f1, :a1].ring
 $Modes = [:major, :minor].ring
 
-$key  = $Keys[0]
-$mode = $Modes[0]
-
-
+$key  = $Keys[3]
+$mode = $Modes[1]
 
 kick1    = tabb(["1000","0000","1000","0000"])
 kick2    = tabb(["1000","0001","1000","0000"])
@@ -94,7 +101,7 @@ end
 
 make_bass()
 
-hook1       = spread(3, 37)
+hook1       = tabb(["0001","0000","1000","0100"]).drop(12)
 shaker1     = spread(3, 7)
 shaker2     = spread(5, 7)
 euclidians1 = spread(3, 11)
@@ -108,17 +115,17 @@ clap2       = spread(5, 8)
 clap3       = spread(5, 9)
 clap4       = spread(5, 13)
 
-$Punch  = $Punches[1]
-$Clap   = $Claps[2]
+$Punch  = $Punches[3]
+$Clap   = $Claps[3]
 $Shaker = $Shakers[0]
 
-$hook       = hook0
-$kick       = kick1
+$hook       = hook1
+$kick       = kick2
 $snare      = snare1
 $cymbal     = cymbal1
-$shaker     = shaker0
+$shaker     = shaker2
 $euclidians = euclidians1
-$punch      = punch1
+$punch      = punch2
 $clap       = clap1
 
 live_loop :metronome do

@@ -253,6 +253,12 @@ define(:bool_to_string) do | ring |
   return str.join("")
 end
 
+define(:bspread) do |num_accents, num_notes|
+  s = spread(num_accents, num_notes)
+  return boolring_to_string(s)
+end
+
+
 define(:numring_to_string) do |ring|
   len = ring.length
   str = []
@@ -265,6 +271,26 @@ define(:numring_to_string) do |ring|
 
   return str.join("")
 end
+
+define(:boolring_to_string) do | ring |
+  len = ring.length
+  str = []
+  idx = 0
+
+  len.times do
+    n = ring[idx]
+
+    if n
+      str.append("1")
+    else
+      str.append("0")
+    end
+    idx = idx + 1
+  end
+
+  return str.join("")
+end
+
 
 define(:hexring_to_string) do |ring|
   len = ring.length

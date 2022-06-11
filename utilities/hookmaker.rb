@@ -23,7 +23,7 @@ tot = 0
 sounds.times do | n |
   slp = sleeps.choose
   total = total + slp
-  if total < 8
+  if total < 16
     hook[n] = {sleep: slp,
                sample: "African/wavedrum1.wav",
                sound: :f2}

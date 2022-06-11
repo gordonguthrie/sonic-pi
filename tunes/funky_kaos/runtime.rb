@@ -28,6 +28,16 @@ define(:walking_sleep) do |old_walk, beat, source|
   return walk
 end
 
+define(:rip_sleep) do |beat, rip, source|
+  if (beat % 2) == 0
+    slp = 0.25 + $swing_time
+  else
+    slp = 0.25 - $swing_time
+  end
+  total = slp/rip
+  sleep(total)
+end
+
 define(:get_sustain) do |beat|
   if (beat % 2) == 0
     slp = 0.25 + $swing_time
