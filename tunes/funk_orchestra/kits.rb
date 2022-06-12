@@ -1,3 +1,10 @@
+#   ____           _               _
+#  / __ \         | |             | |
+# | |  | |_ __ ___| |__   ___  ___| |_ _ __ __ _
+# | |  | | '__/ __| '_ \ / _ \/ __| __| '__/ _` |
+# | |__| | | | (__| | | |  __/\__ \ |_| | | (_| |
+#  \____/|_|  \___|_| |_|\___||___/\__|_|  \__,_|
+
 Kicks = [
   "Kicks_II/BOOM.wav",
   "Kicks_II/garage_kick.wav",
@@ -20,16 +27,16 @@ Cymbals = [
   "Cymbals/TrashA-09.wav",
   "Cymbals/TrashB-01.wav",
 ]
-Dubs1 = [
-  "Wierdos/typewriter-bell.wav",
-  "Wierdos/Knife-01.wav",
-  "Wierdos/Frog1-simple.wav",
-  "Wierdos/spank.wav",
+Dubs = [
+  "Claps/Vrb-clap1.wav",
+  "Claps/compressed-clap.wav",
+  "Claps/thin-wispy-clap.wav",
+  "Claps/real-room-clap.wav",
 ]
-Dubs2 = [
-  "Wierdos/typewriter-bell.wav",
-  "Wierdos/gunshot.wav",
-  "Wierdos/ricochet.wav",
-  "Wierdos/ratatat.wav",
-  "Wierdos/reload.wav",
+
+Percs = [
+  "African/gungru1.wav",
+  "African/gungru2.wav",
+  "African/gungru3.wav",
+  "African/gungru5.wav"
 ]
