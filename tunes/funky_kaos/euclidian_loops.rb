@@ -33,7 +33,7 @@ with_fx :reverb, mix: 0.2 do | r |
         bar  = bars.look(:bars) - 1
         if !$hook[bar]
           if shaker[bar] && (count % 8 == 1)
-            sample $samplespath + Shaker, amp: rdist(.01, $ShakerAmp)
+            sample $samplespath + Shaker, amp: rdist(0.01, $ShakerAmp)
           end
           if euclidians[bar] && punch[beat]
             sample $samplespath + Punch, amp: rdist(0.01, $PunchAmp)
