@@ -7,7 +7,9 @@
 
 samplespath = "/Users/gordonguthrie/Dev/sonic-pi/samples/"
 
-$ghost = -> { rrand(0.2, 0.3) }
+
+
+$ghost  = -> { rrand(0.2, 0.3) }
 $normal = -> { rrand(0.4, 0.6) }
 $accent = -> { rrand(0.8, 0.9) }
 
@@ -24,16 +26,16 @@ define(:play_bass) do |note, pan, no_beats, isroot, debug|
   r2 = rdist(0.2, 0.8)
   r3 = rdist(0.2, 0.8)
   sustain = no_beats
-  synth(:sine,   note: note + 12.1,   amp: 0.2 * a1,   pan: pan,   release: no_beats * r1)
-  synth(:sine,   note: note + 12,   amp: 0.2 * a2,   pan: pan,   release: no_beats * r2)
-  synth(:sine,   note: note,   amp: 0.5 * a3,   pan: pan,   release: no_beats * r1)
-  synth(:dtri,   note: note - 12,   amp: 0.2 * a1,   pan: pan,   release: no_beats * r2,   attack: 0.01)
-  synth(:beep,   note: note - 11.9,   amp: 0.2 * a2,   pan: pan,   release: no_beats * r1)
+  synth(:sine,   note: note + 12.1, amp: $BassAmp * 0.2 * a1, pan: pan, release: no_beats * r1)
+  synth(:sine,   note: note + 12,   amp: $BassAmp * 0.2 * a2, pan: pan, release: no_beats * r2)
+  synth(:sine,   note: note,        amp: $BassAmp * 0.5 * a3, pan: pan, release: no_beats * r1)
+  synth(:dtri,   note: note - 12,   amp: $BassAmp * 0.2 * a1, pan: pan, release: no_beats * r2,   attack: 0.01)
+  synth(:beep,   note: note - 11.9, amp: $BassAmp * 0.2 * a2, pan: pan, release: no_beats * r1)
 
   if isroot
-    play(note,     amp: 1 * a2,     pan: pan,     release: release * r3)
+    play(note, amp: $BassAmp * 1.0 * a2, pan: pan, release: release * r3)
   else
-    play(note,     amp: 0.2 * a3,     pan: pan,     release: no_beats * r3)
+    play(note, amp: $BassAmp * 0.2 * a3, pan: pan, release: no_beats * r3)
   end
 end
 

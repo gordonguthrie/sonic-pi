@@ -21,10 +21,6 @@ run_file("/Users/gordonguthrie/Dev/sonic-pi/tunes/funk_orchestra/kits.rb")
 $beats = (ring, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
 $bars  = (ring, 1, 2, 3, 4, 5, 6, 7, 8)
 
-ghost  = -> { rrand(0.2, 0.3) }
-normal = -> { rrand(0.4, 0.6) }
-accent = -> { rrand(0.8, 0.9) }
-
 kicks1      = tabb(["1000","0000","1000","0000"])
 snares1     = tabb(["0000","1000","0000","1000"])
 cymbals1    = tabn(["1110","1010"])
@@ -37,11 +33,10 @@ $cymbals = cymbals1
 $dubs    = dubs1
 $percs   = percs1
 
-$silencekicks   = true
-$silencesnares  = true
-
-$silencedubs    = true
-$silencepercs   = true
+$silencekicks   = false
+$silencesnares  = false
+$silencedubs    = false
+$silencepercs   = false
 
 $silencecymbals = false
 $silencebass    = false

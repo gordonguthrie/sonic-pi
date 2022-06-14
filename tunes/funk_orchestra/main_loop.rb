@@ -12,6 +12,17 @@
 ##|                   | |
 ##|                   |_|
 
+$KickAmp  = 2.0
+$SnareAmp = 1.0
+$BassAmp  = 1.0
+$DubAmp   = 1.0
+$PercsAmp = 1.0
+
+$SampleKickAmp  = 1.0
+$SampleSnareAmp = 1.0
+$SampleDubAmp   = 1.0
+$SamplePercAmp  = 1.0
+
 with_fx :reverb, mix: 0.3 do
   with_fx :echo, mix: 0.25 do
     with_fx :compressor do
@@ -40,14 +51,14 @@ with_fx :reverb, mix: 0.3 do
             is_root = true
             samp = $samplespath + Kicks[0]
             pan = rdist(0.1, 0.4)
-            sample samp, amp: 2.0, pan: pan
+            sample samp, amp: $KickAmp, pan: pan
           else
             is_root = false
           end
           if s && !$silencesnares then
             samp = $samplespath + Snares[0]
             pan = rdist(0.1, -0.4)
-            sample samp, pan: pan
+            sample samp, pan: pan, amp: $SnareAmp
           end
           if (c != 0) && !$silencecymbals then
             samp = $samplespath + Cymbals[c]
@@ -62,12 +73,12 @@ with_fx :reverb, mix: 0.3 do
           if s && !$silencedubs then
             samp = $samplespath + Dubs.choose
             pan = rdist(0.1, 0.4)
-            sample samp, pan: pan
+            sample samp, pan: pan, amp: $DubAmp
           end
           if s && !$silencepercs then
             samp = $samplespath + Percs.choose
             pan = rdist(0.1, -0.4)
-            sample samp, pan: pan
+            sample samp, pan: pan, amp: $PercsAmp
           end
           if kicks[idx + 1] then
             prompt("blue", b)
