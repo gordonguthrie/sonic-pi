@@ -33,7 +33,7 @@ with_fx(:reverb, mix: 0.3) do |r|
         if playhook[bar]
           if rhythm[beat] != 0
             drum = Hook[rhythm[beat] - 1]
-            sample($samplespath + drum)
+            sample($samplespath + drum, amp: $HookAmp)
           end
         end
 

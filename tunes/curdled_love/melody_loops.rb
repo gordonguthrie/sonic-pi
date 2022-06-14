@@ -43,7 +43,7 @@ with_fx(:level, amp: 0.5) do
           isroot = false
         end
 
-        play_bass(n, pan, dur, isroot, false)
+        play_bass(n, $BassAmp, pan, dur, isroot, false)
       end
 
       old_walk = walking_sleep(old_walk, beat, "bass")

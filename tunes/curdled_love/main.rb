@@ -24,7 +24,6 @@ run_file("/Users/gordonguthrie/Dev/sonic-pi/tunes/curdled_love/loadable/hooks.rb
 run_file("/Users/gordonguthrie/Dev/sonic-pi/tunes/curdled_love/loadable/runtime.rb")
 run_file("/Users/gordonguthrie/Dev/sonic-pi/libraries/make_riffs.rb")
 run_file("/Users/gordonguthrie/Dev/sonic-pi/libraries/suns_out_guns_out.rb")
-##| run_file("/Users/gordonguthrie/Dev/sonic-pi/libraries/play_routines.rb")
 run_file("/Users/gordonguthrie/Dev/sonic-pi/libraries/bag_of_randoms.rb")
 run_file("/Users/gordonguthrie/Dev/sonic-pi/libraries/tab.rb")
 
@@ -97,20 +96,20 @@ hk5 = {hook: Hook5, rhythm: hooks2}
 
 $bpm = 120
 
-$Kicks      = Kicks1
-$Snares     = Snares2
-$Cymbals    = Cymbals2
-$DubShakers = DubShakers1
+$Kicks      = Kicks2
+$Snares     = Snares1
+$Cymbals    = Cymbals1
+$DubShakers = DubShakers2
 
 $Shakers    = Shakers1
 
-$rkick     = rkick1
-$rcymbal   = rcymbal2
+$rkick     = rkick2
+$rcymbal   = rcymbal1
 $rsnare    = rsnare2
 $rsnareacc = rsnareacc1
-$hk        = hk3
+$hk        = hk1
 
-$has_shaker = true
+$has_shaker = false
 
 $playdub  = playdub0
 $playhard = playhard0
@@ -128,8 +127,8 @@ chorus_1 = "Chorus I"
 chorus_2 = "Chorus II"
 chorus_3 = "Chorus III"
 
-##| $verse = verse_4
-$verse = chorus_3
+$verse = verse_1
+##| $verse = chorus_1
 
 amp0 = [0, 0, 0, 0, 0]
 amp1 = [1, 0, 0, 0, 0]
@@ -140,7 +139,7 @@ amp5 = [1, 0, 1, 1, 1]
 amp6 = [1, 1, 1, 1, 1]
 
 $vocalsleep = 16
-$amp = amp6
+$amp = amp0
 
 $ghost  = -> { rrand(0.2, 0.3) }
 $normal = -> { rrand(0.4, 0.6) }

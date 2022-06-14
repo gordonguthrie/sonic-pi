@@ -15,6 +15,14 @@ print("DRUMS RELOADED")
 
 use_bpm $bpm
 
+$KickAmp        = 1.0
+$SnareAmp       = 1.0
+$SnareSplashAmp = 0.5
+$CymbalAmp      = 1.0
+$ShakerAmp      = 0.7
+$HookAmp        = 1.0
+$VoiceAmp       = 1.0
+
 with_fx(:reverb, mix: 0.3) do |r|
   with_fx(:echo,   mix: 0.25) do |e|
     with_fx(:compressor) do
@@ -43,11 +51,11 @@ with_fx(:reverb, mix: 0.3) do |r|
           if !playhook[bar]
 
             if rkick[beat]
-              play_kicks(Kicks, bar, playdub, playhard, has_shaker, globalrandom1, globalrandom2)
+              play_kicks(Kicks, $KickAmp, bar, playdub, playhard, has_shaker, $ShakerAmp, globalrandom1, globalrandom2)
             end
 
             if rsnare[beat]
-              play_snare(Snares, bar, playdub, playhard, globalrandom1, globalrandom2)
+              play_snare(Snares, $SnareAmp, bar, playdub, playhard, globalrandom1, globalrandom2)
             end
           end
           old_walk = walking_sleep(old_walk, beat, "beat1")
@@ -87,7 +95,7 @@ with_fx(:reverb, mix: 0.3) do |r|
           if !playhook[bar]
 
             if rsnare[beat]
-              play_snare(Snares, bar, playdub, playhard, globalrandom1, globalrandom2)
+              play_snare(Snares, $SnareAmp, bar, playdub, playhard, globalrandom1, globalrandom2)
             end
           end
           old_walk = walking_sleep(old_walk, beat, "beat2")
@@ -133,7 +141,7 @@ with_fx(:reverb, mix: 0.3) do |r|
           if !playhook[bar]
 
             if rkick[beat]
-              play_kicks(Kicks, bar, playdub, playhard, has_shaker, globalrandom1, globalrandom2)
+              play_kicks(Kicks, $KickAmp, bar, playdub, playhard, has_shaker, $ShakerAmp, globalrandom1, globalrandom2)
             end
 
             if (rcymbal[beat] != 0 && rcymbal[beat] != false)
@@ -141,18 +149,18 @@ with_fx(:reverb, mix: 0.3) do |r|
               cring = Cymbals[:cymbals].ring
               a = $normal.call * Cymbals[:amp]
               s = $samplespath + cring[cymbal]
-              sample(s,           amp: a,           pan: rdist(0.03, 0.5))
+              sample(s, amp: a * $CymbalAmp , pan: rdist(0.03, 0.5))
             end
 
             if rsnare[beat]
-              play_snare(Snares, bar, playdub, playhard, globalrandom1, globalrandom2)
+              play_snare(Snares, $SnareAmp, bar, playdub, playhard, globalrandom1, globalrandom2)
             end
 
             if rsnareacc[beat]
               splash = get_drum(Snares, playdub[bar], playhard[bar])
               a = ((rand > 0.7) ? $ghost.call : $normal.call)
               s = $samplespath + splash
-              sample(s,           amp: a * 0.5,           pan: -0.45)
+              sample(s, amp: a * $SnareSplashAmp, pan: -0.45)
             end
           end
           old_walk = walking_sleep(old_walk, beat, "beat3")
