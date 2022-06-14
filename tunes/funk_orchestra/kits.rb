@@ -14,6 +14,7 @@ Kicks = [
   "Kicks_II/lowdrum.wav",
   "Kicks/ElecK02-Kick01.wav",
 ]
+
 Snares = [
   "Snares/LudSnrA-01.wav",
   "Snares/LudSnrA-02.wav",
@@ -21,12 +22,14 @@ Snares = [
   "Snares/LudSnrA-04.wav",
   "Snares/LudSnrA-05.wav",
 ]
+
 Cymbals = [
   "Cymbals/TrashA-02.wav",
   "Cymbals/TrashA-04.wav",
   "Cymbals/TrashA-09.wav",
   "Cymbals/TrashB-01.wav",
 ]
+
 Dubs = [
   "Claps/Vrb-clap1.wav",
   "Claps/compressed-clap.wav",

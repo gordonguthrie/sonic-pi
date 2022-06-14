@@ -38,7 +38,7 @@ define(:play_bass) do |note, pan, no_beats, isroot, debug|
 end
 
 define(:swing_time) do
-  swing_time = 0.2
+  swing_time = 0.00
   return swing_time
 end
 

@@ -7,6 +7,9 @@
 
 ## these are the synching loops that push the OSC messages out to the webpage
 ## one for each of the four rings and each of the 12 circles
+use_osc_logging false
+
+
 live_loop(:blueoutbound) do
   slp = sync(:blueoutbound)
   sleep(slp[0])
