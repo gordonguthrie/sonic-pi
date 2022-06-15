@@ -16,11 +16,12 @@ print("DRUMS RELOADED")
 use_bpm $bpm
 
 $KickAmp        = 1.0
-$SnareAmp       = 1.0
+$SnareAmp       = 0.8
 $SnareSplashAmp = 0.5
-$CymbalAmp      = 1.0
+$CymbalAmp      = 0.8
+$BassAmp        = 1.0
 $ShakerAmp      = 0.7
-$HookAmp        = 1.0
+$HookAmp        = 0.5
 $VoiceAmp       = 1.0
 
 with_fx(:reverb, mix: 0.3) do |r|

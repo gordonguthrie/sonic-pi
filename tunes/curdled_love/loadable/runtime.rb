@@ -37,7 +37,6 @@ define(:play_kicks) do |kicks, kickamp, bar, dub, hard, has_shaker, shakeramp, g
       sample($samplespath + shak,       amp: shakeramp)
     else
       shak = $Shakers.choose
-      print("shak is", shak)
       sample($samplespath + shak,       amp: shakeramp)
     end
   end
@@ -86,7 +85,6 @@ define(:play_bass) do |note, baseamp, pan, no_beats, isroot, debug|
   if debug
     print("base note is ", note, "no of beats is", no_beats)
   end
-
   release = no_beats
   a1 = rdist(0.2, 0.8)
   a2 = rdist(0.2, 0.8)

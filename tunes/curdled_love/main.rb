@@ -82,6 +82,7 @@ durationsx = riff[:durations]
 
 $key = {root: :d, scale: :major}
 
+funk0 = {bass: ring(0), durations: durations1}
 funk1 = {bass: bass1, durations: durations1}
 funk2 = {bass: bass2, durations: durations2}
 funk3 = {bass: bass3, durations: durations3}
@@ -103,19 +104,19 @@ $DubShakers = DubShakers2
 
 $Shakers    = Shakers1
 
-$rkick     = rkick2
-$rcymbal   = rcymbal1
-$rsnare    = rsnare2
-$rsnareacc = rsnareacc1
-$hk        = hk1
+$rkick     = rkick0
+$rcymbal   = rcymbal0
+$rsnare    = rsnare0
+$rsnareacc = rsnareacc0
+$hk        = hk4
 
-$has_shaker = false
+$has_shaker = true
 
 $playdub  = playdub0
 $playhard = playhard0
 $playhook = playhook0
 
-$funk = funk2
+$funk = funk0
 
 verse_1 = "i_saw_you"
 verse_2 = "you_kissed_me"
@@ -127,8 +128,8 @@ chorus_1 = "Chorus I"
 chorus_2 = "Chorus II"
 chorus_3 = "Chorus III"
 
-$verse = verse_1
-##| $verse = chorus_1
+$verse = verse_5
+$verse = chorus_1
 
 amp0 = [0, 0, 0, 0, 0]
 amp1 = [1, 0, 0, 0, 0]
