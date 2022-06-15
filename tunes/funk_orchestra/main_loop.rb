@@ -12,17 +12,6 @@
 ##|                   | |
 ##|                   |_|
 
-$KickAmp  = 2.0
-$SnareAmp = 1.0
-$BassAmp  = 1.0
-$DubAmp   = 1.0
-$PercsAmp = 1.0
-
-$SampleKickAmp  = 1.0
-$SampleSnareAmp = 1.0
-$SampleDubAmp   = 1.0
-$SamplePercAmp  = 1.0
-
 with_fx :reverb, mix: 0.3 do
   with_fx :echo, mix: 0.25 do
     with_fx :compressor do
@@ -143,7 +132,7 @@ live_loop :syncher, sync: :metronome  do
   use_real_time
   use_bpm $bpm
   beats = $beats
-  8.times do
+  $no_times.times do
     cue :trig
     beat = beats[beatidx]
     slp = get_sleep(beat)

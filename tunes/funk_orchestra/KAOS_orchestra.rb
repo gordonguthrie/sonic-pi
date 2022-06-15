@@ -14,15 +14,31 @@ $samplespath = "/Users/gordonguthrie/Dev/sonic-pi/samples/"
 run_file("/Users/gordonguthrie/Dev/sonic-pi/libraries/make_riffs.rb")
 run_file("/Users/gordonguthrie/Dev/sonic-pi/tunes/funk_orchestra/kits.rb")
 
-##| use_random_seed 53
+$KickAmp    = 0.5
+$SnareAmp   = 0.2
+$BassAmp    = 1.0
+$CymbalsAmp = 0.6
+$DubAmp     = 0.2
+$PercsAmp   = 0.2
+
+$SampleKickAmp  = 0.7
+$SampleSnareAmp = 0.7
+$SampleDubAmp   = 0.5
+$SamplePercAmp  = 0.5
+
+use_random_seed 53
 ##| use_random_seed 59
 ##| use_random_seed 60
 
 $beats = (ring, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
 $bars  = (ring, 1, 2, 3, 4, 5, 6, 7, 8)
 
+$no_times = 4
+
 kicks1      = tabb(["1000","0000","1000","0000"])
+kicks2      = tabb(["1000","0010","1000","0000"])
 snares1     = tabb(["0000","1000","0000","1000"])
+snares2     = tabb(["0000","1010","1000","1000"])
 cymbals1    = tabn(["1110","1010"])
 dubs1       = spread(7, 27)
 percs1      = spread(5, 21)
@@ -41,7 +57,7 @@ $silencepercs   = false
 $silencecymbals = false
 $silencebass    = false
 
-$Chord = (chord :c2, '13')
+$Chord = (chord :d2, :major)
 
 bass0 = ring(0)
 bass1 = make_riff(7, $kicks, 1)

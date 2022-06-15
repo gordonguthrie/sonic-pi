@@ -5,10 +5,6 @@
 # | | \ \ |_| | | | | |_| | | | | | |  __/
 # |_|  \_\__,_|_| |_|\__|_|_| |_| |_|\___|
 
-samplespath = "/Users/gordonguthrie/Dev/sonic-pi/samples/"
-
-
-
 $ghost  = -> { rrand(0.2, 0.3) }
 $normal = -> { rrand(0.4, 0.6) }
 $accent = -> { rrand(0.8, 0.9) }
