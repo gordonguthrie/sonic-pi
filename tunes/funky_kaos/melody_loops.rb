@@ -32,6 +32,7 @@ with_fx :reverb, mix: 0.2 do | r |
             sustain = get_sustain(beat)
             amp = $normal.call * bassamp[beat] * $BassAmp
             play nbass[beat], sustain: sustain, amp: amp
+            play_bass(nbass[beat], amp, 0.0, sustain, false)
           end
 
           old_walk = walking_sleep(old_walk, beat, "bass")

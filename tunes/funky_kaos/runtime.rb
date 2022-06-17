@@ -46,3 +46,23 @@ define(:get_sustain) do |beat|
   end
   return slp * 0.85
 end
+
+define(:play_bass) do |note, baseamp, pan, no_beats, debug|
+  if debug
+    print("base note is ", note, "no of beats is", no_beats)
+  end
+  release = no_beats
+  a1 = rdist(0.2, 0.8)
+  a2 = rdist(0.2, 0.8)
+  a3 = rdist(0.2, 0.8)
+  r1 = rdist(0.2, 0.8)
+  r2 = rdist(0.2, 0.8)
+  r3 = rdist(0.2, 0.8)
+  sustain = no_beats
+  synth(:sine,   note: note + 12.1, amp: baseamp * 0.2 * a1, pan: pan, release: no_beats * r1)
+  synth(:sine,   note: note + 12,   amp: baseamp * 0.2 * a2, pan: pan, release: no_beats * r2)
+  synth(:sine,   note: note,        amp: baseamp * 0.5 * a3, pan: pan, release: no_beats * r1)
+  synth(:dtri,   note: note - 12,   amp: baseamp * 0.2 * a1, pan: pan, release: no_beats * r2,   attack: 0.01)
+  synth(:beep,   note: note - 11.9, amp: baseamp * 0.2 * a2, pan: pan, release: no_beats * r1)
+
+end

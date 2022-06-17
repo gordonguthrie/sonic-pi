@@ -37,7 +37,7 @@ $KickAmp   = 0.2
 $SnareAmp  = 0.4
 $CymbalAmp = 0.4
 $BassAmp   = 0.08
-$HookAmp   = 0.2
+$HookAmp   = 0.1
 $ShakerAmp = 0.2
 $PunchAmp  = 0.15
 $ClapAmp   = 0.15
@@ -74,8 +74,8 @@ $Shakers = [
 $Keys = [:c1, :d1, :f1, :a1].ring
 $Modes = [:major, :minor].ring
 
-$key  = $Keys[3]
-$mode = $Modes[1]
+$key  = $Keys[1]
+$mode = $Modes[0]
 
 kick1    = tabb(["1000","0000","1000","0000"])
 kick2    = tabb(["1000","0001","1000","0000"])
@@ -115,23 +115,22 @@ clap2       = spread(5, 8)
 clap3       = spread(5, 9)
 clap4       = spread(5, 13)
 
-$Punch  = $Punches[3]
-$Clap   = $Claps[3]
+$Punch  = $Punches[0]
+$Clap   = $Claps[0]
 $Shaker = $Shakers[0]
 
-$hook       = hook1
-$kick       = kick2
+$hook       = hook0
+$kick       = kick1
 $snare      = snare1
 $cymbal     = cymbal1
-$shaker     = shaker2
-$euclidians = euclidians1
-$punch      = punch2
+$shaker     = shaker0
+$euclidians = euclidians0
+$punch      = punch1
 $clap       = clap1
 
 live_loop :metronome do
   sleep 8
 end
-
 
 $kickcontrols     = [kick1, kick2].ring
 $snarecontrols    = [snare1, snare2].ring

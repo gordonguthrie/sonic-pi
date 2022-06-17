@@ -67,12 +67,12 @@ with_fx :compressor do
           rip = h[:rips][0]
           if $hook[bar] && roll[beat]
             if !rip[beat]
-              sample $samplespath + tom, amp: rdist(0.15, $HookAmp), pan: rdist(0.1, -0.3)
+              sample $samplespath + tom, amp: rdist(0.05, $HookAmp), pan: rdist(0.1, -0.3)
               old_walk = walking_sleep(old_walk, beat, "hooks_1")
             else
               r = rips.choose
               r.times do
-                sample $samplespath + tom, amp: rdist(0.15, $HookAmp), pan: rdist(0.1, -0.3)
+                sample $samplespath + tom, amp: rdist(0.05, $HookAmp), pan: rdist(0.1, -0.3)
                 rip_sleep(beat, r, "hooks1")
               end
             end
@@ -109,12 +109,12 @@ with_fx :compressor do
           rip = h[:rips][1]
           if $hook[bar] && roll[beat]
             if !rip[beat]
-              sample $samplespath + tom, amp: rdist(0.15, $HookAmp), pan: rdist(0.1, -0.2)
+              sample $samplespath + tom, amp: rdist(0.05, $HookAmp), pan: rdist(0.1, -0.2)
               old_walk = walking_sleep(old_walk, beat, "hooks_2")
             else
               r = rips.choose
               r.times do
-                sample $samplespath + tom, amp: rdist(0.15, $HookAmp), pan: rdist(0.1, -0.2)
+                sample $samplespath + tom, amp: rdist(0.05, $HookAmp), pan: rdist(0.1, -0.2)
                 rip_sleep(beat, r, "hooks2")
               end
             end
@@ -151,12 +151,12 @@ with_fx :compressor do
           rip = h[:rips][2]
           if $hook[bar] && roll[beat]
             if !rip[beat]
-              sample $samplespath + tom, amp: rdist(0.15, $HookAmp), pan: rdist(0.1, -0.4)
+              sample $samplespath + tom, amp: rdist(0.05, $HookAmp), pan: rdist(0.1, -0.4)
               old_walk = walking_sleep(old_walk, beat, "hooks_1")
             else
               r = rips.choose
               r.times do
-                sample $samplespath + tom, amp: rdist(0.15, $HookAmp), pan: rdist(0.1, -0.4)
+                sample $samplespath + tom, amp: rdist(0.05, $HookAmp), pan: rdist(0.1, -0.4)
                 rip_sleep(beat, r, "hooks1")
               end
             end
