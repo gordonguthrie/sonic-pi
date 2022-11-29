@@ -15,12 +15,13 @@ end
 
 define(:visualise_rhythms) do | rhythms, filename |
   total = get_total_time(rhythms)
-  expand = 1000
-  height = 50
-  thickness = 2
+  expand = 100
+  height = 200
+  thickness = 5
   width = (total * expand).to_int
   header = ["P3", (width * thickness).to_s + " " + height.to_s, "1"]
-  body = ring("0 0 1").stretch(thickness)
+  body = ring("0 0 0").stretch(thickness)
+  print "starting body is #{body}"
   run = 0
   b = 0
   n = 1
@@ -28,11 +29,11 @@ define(:visualise_rhythms) do | rhythms, filename |
     beat = (rhythms[b] * expand).to_i + run
     if n == beat
       print "in beat at #{beat} for #{n} and #{b}"
-      body = body + ring("0 0 1").stretch(thickness)
+      body = body + ring("0 0 0").stretch(thickness)
       b = b + 1
       run = beat
     else
-      # print "n is #{n} and beat is #{beat}"
+      #print "n is #{n} and beat is #{beat}"
       body = body + ring("1 1 1").stretch(thickness)
     end
     n = n + 1
@@ -45,8 +46,8 @@ define(:visualise_rhythms) do | rhythms, filename |
   write_file(contents * "\n", filename)
 end
 
-rhythm = ring(0.25, 0.25, 0.25, 0.25)
+rhythm = ring(0.2, 0.3, 0.2, 0.3, 0.3, 0.2, 0.3, 0.2)
 
-filename = "strict_time_III"
+filename = "swing_time"
 
 visualise_rhythms(rhythm, filename)

@@ -1,10 +1,14 @@
-use_bpm 200
+use_bpm 90
 pattern = [7, 11, 13]
 strongs = [2, 3, 5]
 
-no_of_patterns = 10
+no_of_patterns = 100
 
 no_of_repeats = 4
+
+japan = "~/Dev/sonic-pi/samples/Japanese/"
+
+bassdrums = ["Hirado-A1.wav", "Hirado-A2.wav"] #, "Hirado-B1.wav", "Hirado-B2.wav", "Hirado-B3.wav"]
 
 random = range(1, no_of_patterns)
 
@@ -14,7 +18,9 @@ define :get_sleeps do | number |
   sleeps = []
   n = 0
   number.times do
-    sleep = rrand_i(1, 10)/10.0
+    ##| sleep = rand
+    ##| sleep = 0.3
+    sleep = [1.0/12, 1.0/10, 1.0/6, 1.0/5, 1.0/4, 1.0/3, 1.0/2].choose
     sleeps[n] = sleep
     n = n + 1
   end
@@ -34,9 +40,9 @@ define :run_pattern do | pattern |
       beat = b.tick(:b)
       interval = s.tick(:s)
       if beat
-        sample :bd_boom
+        sample "~/Dev/sonic-pi/samples/Kicks_II/garage_kick.wav"
       else
-        sample :drum_cymbal_closed
+        sample "~/Dev/sonic-pi/samples/Cymbals/TrashA-01.wav", amp: 0.6
       end
       sleep interval
     end
